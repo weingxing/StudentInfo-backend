@@ -17,6 +17,12 @@
     where college_id = #{collegeId,jdbcType=INTEGER}
   </select>
 
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from college
+  </select>
+
   <delete id="deleteByName" parameterType="java.lang.String" >
     delete from college
     where college_name = #{collegeName,jdbcType=VARCHAR}

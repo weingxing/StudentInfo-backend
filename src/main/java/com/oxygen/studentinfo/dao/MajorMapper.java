@@ -2,6 +2,8 @@ package com.oxygen.studentinfo.dao;
 
 import com.oxygen.studentinfo.entity.Major;
 
+import java.util.List;
+
 public interface MajorMapper {
     int deleteByPrimaryKey(Integer majorId);
 
@@ -16,4 +18,7 @@ public interface MajorMapper {
     int updateByPrimaryKey(Major record);
 
     int deleteByName(String majorName);
+
+    List<Major> selectAll();
+
 }

@@ -31,6 +31,65 @@
   </sql>
 
 
+  <select id="queryAllInfo" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="All_Info_List" />
+    from info
+    left join classroom on info.class_id = classroom.class_id
+    left join major on info.major_id = major.major_id
+    left join college on info.college_id = college.college_id
+    left join category on info.category_id = category.category_id
+    limit #{currIndex} , #{pageSize}
+  </select>
+
+  <select id="queryInfoByCategoryId" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="All_Info_List" />
+    from info
+    left join classroom on info.class_id = classroom.class_id
+    left join major on info.major_id = major.major_id
+    left join college on info.college_id = college.college_id
+    left join category on info.category_id = category.category_id
+    where info.category_id = #{categoryId}
+    limit #{currIndex} , #{pageSize}
+  </select>
+
+  <select id="querySpecialInfo" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="All_Info_List" />
+    from info
+    left join classroom on info.class_id = classroom.class_id
+    left join major on info.major_id = major.major_id
+    left join college on info.college_id = college.college_id
+    left join category on info.category_id = category.category_id
+    where category.category_name != '普通'
+    limit #{currIndex} , #{pageSize}
+
+  </select>
+
+  <select id="queryInfoByKeyword" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="All_Info_List" />
+    from info
+    left join classroom on info.class_id = classroom.class_id
+    left join major on info.major_id = major.major_id
+    left join college on info.college_id = college.college_id
+    left join category on info.category_id = category.category_id
+    where info.sid like #{keyword}
+    or info.sname like #{keyword}
+    or info.sex like #{keyword}
+    or classroom.class_name like #{keyword}
+    or college.college_name like #{keyword}
+    or major.major_name like #{keyword}
+    or category.category_name like #{keyword}
+    or info.address like #{keyword}
+    or info.idcard like #{keyword}
+    or info.grade like #{keyword}
+    or info.photo like #{keyword}
+    or info.phone like #{keyword}
+    or info.remark like #{keyword}
+    limit #{currIndex} , #{pageSize}
+  </select>
 
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 

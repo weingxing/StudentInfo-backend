@@ -6,6 +6,8 @@ import com.oxygen.studentinfo.service.ClassRoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ClassRoomServiceImpl implements ClassRoomService {
 
@@ -55,5 +57,15 @@ public class ClassRoomServiceImpl implements ClassRoomService {
         if (res >= 1)
             return true;
         return false;
+    }
+
+    @Override
+    public List<ClassRoom> findAll() {
+        return classRoomMapper.selectAll();
+    }
+
+    @Override
+    public ClassRoom findById(int id) {
+        return classRoomMapper.selectByPrimaryKey(id);
     }
 }

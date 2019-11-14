@@ -17,6 +17,12 @@
     where major_id = #{majorId,jdbcType=INTEGER}
   </select>
 
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from major
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from major
     where major_id = #{majorId,jdbcType=INTEGER}

@@ -7,6 +7,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+
+/**
+ * @author Oxygen
+ * @data 2019/11/10
+ *
+ * 用户控制类
+ */
+
 @RestController
 public class UserController {
 
@@ -37,5 +45,25 @@ public class UserController {
         } else {
             return "Access Denied";
         }
+    }
+
+    @GetMapping("/access")
+    public boolean access(@RequestParam(value = "openid")String openid) {
+        return userService.findUserByOpenid(openid) != null;
+    }
+
+    @GetMapping("/addUser")
+    public Object addUser(@RequestParam(value = "tid")String tid,
+                          @RequestParam(value = "tname")String tname,
+                          @RequestParam(value = "openid")String openid) {
+        if(access(openid)){
+            User user = new User();
+            user.setTid(tid);
+            user.setTname(tname);
+            if(userService.addUser(user))
+                return "FINISHED";
+            else return "ERROR";
+        }
+        return "Access Denied";
     }
 }

@@ -6,6 +6,8 @@ import com.oxygen.studentinfo.service.CollegeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CollegeServiceImpl implements CollegeService {
     @Autowired
@@ -44,5 +46,15 @@ public class CollegeServiceImpl implements CollegeService {
         if (res >= 1)
             return true;
         return false;
+    }
+
+    @Override
+    public List<College> findAll() {
+        return collegeMapper.selectAll();
+    }
+
+    @Override
+    public College findById(int id) {
+        return collegeMapper.selectByPrimaryKey(id);
     }
 }

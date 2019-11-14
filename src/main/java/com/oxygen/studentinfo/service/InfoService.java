@@ -27,4 +27,12 @@ public interface InfoService {
 
     public boolean updatePhoneBySid(Info info);
 
+    public List<Info> queryAllInfo(int currPage, int pageSize);
+
+    public List<Info> queryInfoByCategory(int currPage, int pageSize, int categoryId);
+
+    public  List<Info> querySpecialInfo(int currPage, int pageSize);
+
+    public List<Info> queryInfoByKeyword(int currPage, int pageSize, String keyword);
+
 }

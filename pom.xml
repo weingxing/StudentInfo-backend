@@ -11,7 +11,7 @@
 	<groupId>com.oxygen</groupId>
 	<artifactId>studentinfo</artifactId>
 	<version>0.0.1</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<name>StudentInfo</name>
 	<description>Student Information Manager</description>
 

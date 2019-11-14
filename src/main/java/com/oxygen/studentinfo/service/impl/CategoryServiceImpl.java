@@ -7,6 +7,8 @@ import com.oxygen.studentinfo.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
@@ -47,5 +49,15 @@ public class CategoryServiceImpl implements CategoryService {
         if (res >= 1)
             return true;
         return false;
+    }
+
+    @Override
+    public List<Category> findAllCategory() {
+        return categoryMapper.selectAll();
+    }
+
+    @Override
+    public Category findById(int id) {
+        return categoryMapper.selectByPrimaryKey(id);
     }
 }

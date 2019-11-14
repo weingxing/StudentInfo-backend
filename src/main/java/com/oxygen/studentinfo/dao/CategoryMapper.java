@@ -2,6 +2,8 @@ package com.oxygen.studentinfo.dao;
 
 import com.oxygen.studentinfo.entity.Category;
 
+import java.util.List;
+
 public interface CategoryMapper {
     int deleteByPrimaryKey(Integer categoryId);
 
@@ -16,4 +18,6 @@ public interface CategoryMapper {
     int updateByPrimaryKey(Category record);
 
     int deleteByName(String categoryName);
+
+    List<Category> selectAll();
 }

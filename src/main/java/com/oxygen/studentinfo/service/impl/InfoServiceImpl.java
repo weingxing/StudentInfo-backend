@@ -6,7 +6,9 @@ import com.oxygen.studentinfo.service.InfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class InfoServiceImpl implements InfoService {
@@ -93,4 +95,39 @@ public class InfoServiceImpl implements InfoService {
     public List<Info> findSpecialInfo() {
         return infoMapper.selectSpecial();
     }
+
+    @Override
+    public List<Info> queryAllInfo(int currPage, int pageSize) {
+        Map<String, Object> data = new HashMap<>();
+        data.put("currIndex", (currPage-1)*pageSize);
+        data.put("pageSize", pageSize);
+        return infoMapper.queryAllInfo(data);
+    }
+
+    @Override
+    public List<Info> queryInfoByCategory(int currPage, int pageSize, int categoryId) {
+        Map<String, Object> data = new HashMap<>();
+        data.put("currIndex", (currPage-1)*pageSize);
+        data.put("pageSize", pageSize);
+        data.put("categoryId", categoryId);
+        return infoMapper.queryInfoByCategoryId(data);
+    }
+
+    @Override
+    public List<Info> querySpecialInfo(int currPage, int pageSize) {
+        Map<String, Object> data = new HashMap<>();
+        data.put("currIndex", (currPage-1)*pageSize);
+        data.put("pageSize", pageSize);
+        return infoMapper.querySpecialInfo(data);
+    }
+
+    @Override
+    public List<Info> queryInfoByKeyword(int currPage, int pageSize, String keyword) {
+        Map<String, Object> data = new HashMap<>();
+        data.put("currIndex", (currPage-1)*pageSize);
+        data.put("pageSize", pageSize);
+        data.put("keyword", keyword);
+        return infoMapper.queryInfoByKeyword(data);
+    }
+
 }

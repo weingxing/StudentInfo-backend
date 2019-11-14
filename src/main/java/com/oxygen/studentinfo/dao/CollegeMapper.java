@@ -2,6 +2,8 @@ package com.oxygen.studentinfo.dao;
 
 import com.oxygen.studentinfo.entity.College;
 
+import java.util.List;
+
 public interface CollegeMapper {
     int deleteByPrimaryKey(Integer collegeId);
 
@@ -10,6 +12,8 @@ public interface CollegeMapper {
     int insertSelective(College record);
 
     College selectByPrimaryKey(Integer collegeId);
+
+    List<College> selectAll();
 
     int updateByPrimaryKeySelective(College record);
 

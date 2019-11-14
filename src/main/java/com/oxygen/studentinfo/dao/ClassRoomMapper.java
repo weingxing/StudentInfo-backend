@@ -2,6 +2,8 @@ package com.oxygen.studentinfo.dao;
 
 import com.oxygen.studentinfo.entity.ClassRoom;
 
+import java.util.List;
+
 public interface ClassRoomMapper {
     int deleteByPrimaryKey(Integer classId);
 
@@ -18,4 +20,6 @@ public interface ClassRoomMapper {
     int deleteByGrade(String grade);
 
     int deleteByName(String ClassName);
+
+    List<ClassRoom> selectAll();
 }

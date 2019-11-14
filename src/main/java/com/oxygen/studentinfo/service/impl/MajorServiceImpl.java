@@ -6,6 +6,8 @@ import com.oxygen.studentinfo.service.MajorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MajorServiceImpl implements MajorService {
     @Autowired
@@ -44,5 +46,15 @@ public class MajorServiceImpl implements MajorService {
         if (res >= 1)
             return true;
         return false;
+    }
+
+    @Override
+    public List<Major> findAll() {
+        return majorMapper.selectAll();
+    }
+
+    @Override
+    public Major findById(int id) {
+        return majorMapper.selectByPrimaryKey(id);
     }
 }
