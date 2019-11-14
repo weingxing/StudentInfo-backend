@@ -29,11 +29,13 @@ public class InfoController {
 
 
     @GetMapping("/search")
-    public Object search(@RequestParam(value = "keyword")String keyword,
+    public Object search(@RequestParam(value = "keyword")String kwd,
                          @RequestParam(value = "openid")String openid,
+                         @RequestParam(value = "currPage")int currPage,
                          @RequestParam(value = "pageSize")int pageSize) {
         if (userController.access(openid)) {
-            List<Info> data = infoService.findInfoByKeyword('%' + keyword + '%');
+            String keyword = '%' + kwd + '%';
+            List<Info> data = infoService.queryInfoByKeyword(currPage, pageSize, keyword);
             PageInfo pageInfo = new PageInfo();
             pageInfo.setData(data);
             pageInfo.setPageCount(infoService.findInfoByKeyword(keyword).size() / pageSize + 1);
