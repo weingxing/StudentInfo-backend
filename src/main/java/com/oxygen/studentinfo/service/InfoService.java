@@ -35,4 +35,10 @@ public interface InfoService {
 
     public List<Info> queryInfoByKeyword(int currPage, int pageSize, String keyword);
 
+    public List<Info> findAllGrade();
+
+    public List<Info> findByGrade(int currPage, int pageSize, String grade);
+
+    public List<Info> findAllByGrade(String grade);
+
 }

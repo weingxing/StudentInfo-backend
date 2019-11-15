@@ -49,7 +49,7 @@ public class MajorController {
         return majorService.findById(majorId);
     }
 
-    @GetMapping("/deleteMajorById")
+    @GetMapping("/deleteMajor")
     public Object deleteMajorById(@RequestParam(value = "majorId")int majorId,
                                   @RequestParam(value = "openid")String openid) {
         if(userController.access(openid)) {

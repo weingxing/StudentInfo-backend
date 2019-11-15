@@ -131,6 +131,33 @@
     where category.category_name != '普通'
   </select>
 
+  <select id="selectByGrade" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="All_Info_List" />
+    from info
+    left join classroom on info.class_id = classroom.class_id
+    left join major on info.major_id = major.major_id
+    left join college on info.college_id = college.college_id
+    left join category on info.category_id = category.category_id
+    where info.grade = #{grade}
+  </select>
+
+  <select id="queryByGrade" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select
+    <include refid="All_Info_List" />
+    from info
+    left join classroom on info.class_id = classroom.class_id
+    left join major on info.major_id = major.major_id
+    left join college on info.college_id = college.college_id
+    left join category on info.category_id = category.category_id
+    where info.grade = #{grade}
+    limit #{currIndex} , #{pageSize}
+  </select>
+
+  <select id="selectGrade" resultMap="BaseResultMap">
+    select distinct grade from classroom order by grade
+  </select>
+
   <select id="selectByKeyword" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select
     <include refid="All_Info_List" />

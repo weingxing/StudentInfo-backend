@@ -130,4 +130,22 @@ public class InfoServiceImpl implements InfoService {
         return infoMapper.queryInfoByKeyword(data);
     }
 
+    @Override
+    public List<Info> findAllGrade() {
+        return infoMapper.selectGrade();
+    }
+
+    @Override
+    public List<Info> findByGrade(int currPage, int pageSize, String grade) {
+        Map<String, Object> data = new HashMap<>();
+        data.put("currIndex", (currPage-1)*pageSize);
+        data.put("pageSize", pageSize);
+        data.put("grade", grade);
+        return infoMapper.queryByGrade(data);
+    }
+
+    @Override
+    public List<Info> findAllByGrade(String grade) {
+        return infoMapper.selectByGrade(grade);
+    }
 }

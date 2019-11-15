@@ -56,8 +56,8 @@ public class WechatUtil {
      * @return String JSON格式字符串
      */
     public String getOpenid(String code) {
-        final String APP_ID = "xxxxxxxxx";
-        final String SECRET = "xxxxxxxxxx";
+        final String APP_ID = "wx67633c3ffa818de0";
+        final String SECRET = "98276e97a05ad6674ef56f691939eaf7";
 
         String url = "https://api.weixin.qq.com/sns/jscode2session?appid=" + APP_ID + "&secret=" +
                 SECRET + "&js_code=" + code + "&grant_type=authorization_code";

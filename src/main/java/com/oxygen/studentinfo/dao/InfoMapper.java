@@ -33,4 +33,10 @@ public interface InfoMapper {
     List<Info> querySpecialInfo(Map<String,Object> data);
 
     List<Info> queryInfoByKeyword(Map<String,Object> data);
+
+    List<Info> selectGrade();
+
+    List<Info> selectByGrade(String grade);
+
+    List<Info> queryByGrade(Map<String,Object> data);
 }

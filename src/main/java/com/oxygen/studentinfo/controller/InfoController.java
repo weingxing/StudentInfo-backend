@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -200,7 +201,7 @@ public class InfoController {
 
     }
 
-    @GetMapping("/updateAddress")
+    @PostMapping("/updateAddress")
     public Object updateAddress(@RequestParam(value = "sid")String sid,
                                 @RequestParam(value = "address")String address,
                                 @RequestParam(value = "openid")String openid) {
@@ -212,6 +213,31 @@ public class InfoController {
             else return "ERROR";
         }
         return "Access Denied";
+    }
+
+    @GetMapping("/getAllGrade")
+    public Object getAllGrade() {
+        List<Info> list = infoService.findAllGrade();
+        List<String> data = new ArrayList<>();
+        for(Info i : list)
+            data.add(i.getGrade());
+        return data;
+    }
+
+    @GetMapping("/getInfoByGrade")
+    public  Object getInfoByGrade(@RequestParam(value = "grade")String grade,
+                                  @RequestParam(value = "currPage")int currPage,
+                                  @RequestParam(value = "pageSize")int pageSize,
+                                  @RequestParam(value = "openid")String openid) {
+        if(userController.access(openid)) {
+            List<Info> data = infoService.findByGrade(currPage, pageSize, grade);
+            PageInfo pageInfo = new PageInfo();
+            pageInfo.setData(data);
+            pageInfo.setPageCount(infoService.findAllByGrade(grade).size() / pageSize + 1);
+            return pageInfo;
+        }
+        else
+            return "Access Denied";
     }
 
 }
