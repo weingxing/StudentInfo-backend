@@ -1,33 +1,33 @@
 package com.oxygen.studentinfo.entity;
 
 public class User {
-    private String tid;
+    private Integer uid;
 
-    private String tname;
+    private String username;
 
-    private String openid;
+    private String password;
 
-    public String getTid() {
-        return tid;
+    public String getUsername() {
+        return username;
     }
 
-    public void setTid(String tid) {
-        this.tid = tid == null ? null : tid.trim();
+    public void setUsername(String username) {
+        this.username = username == null ? null : username.trim();
     }
 
-    public String getTname() {
-        return tname;
+    public String getPassword() {
+        return password;
     }
 
-    public void setTname(String tname) {
-        this.tname = tname == null ? null : tname.trim();
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
     }
 
-    public String getOpenid() {
-        return openid;
+    public Integer getUid() {
+        return uid;
     }
 
-    public void setOpenid(String openid) {
-        this.openid = openid == null ? null : openid.trim();
+    public void setUid(Integer uid) {
+        this.uid = uid;
     }
 }

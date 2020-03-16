@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
+    <link rel="stylesheet" href="../css/public.css" media="all">
+</head>
+<style>
+    .layui-top-box {padding:40px 20px 20px 20px;color:#fff}
+    .panel {margin-bottom:17px;background-color:#fff;border:1px solid transparent;border-radius:3px;-webkit-box-shadow:0 1px 1px rgba(0,0,0,.05);box-shadow:0 1px 1px rgba(0,0,0,.05)}
+    .panel-body {padding:15px}
+    .panel-title {margin-top:0;margin-bottom:0;font-size:14px;color:inherit}
+    .label {display:inline;padding:.2em .6em .3em;font-size:75%;font-weight:700;line-height:1;color:#fff;text-align:center;white-space:nowrap;vertical-align:baseline;border-radius:.25em;margin-top: .3em;}
+    .layui-red {color:red}
+    .main_btn > p {height:40px;}
+</style>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main layui-top-box">
+        <div class="layui-row layui-col-space10">
+
+            <div class="layui-col-md3">
+                <div class="col-xs-6 col-md-3">
+                    <div class="panel layui-bg-cyan">
+                        <div class="panel-body">
+                            <div class="panel-title">
+                                <h5>学生统计</h5>
+                            </div>
+                            <div class="panel-content">
+                                <h1 id="stu_num" class="no-margins">null</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-col-md3">
+                <div class="col-xs-6 col-md-3">
+                    <div class="panel layui-bg-blue">
+                        <div class="panel-body">
+                            <div class="panel-title">
+                                <h5>教师统计</h5>
+                            </div>
+                            <div class="panel-content">
+                                <h1 id="user_num" class="no-margins">null</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-col-md3">
+                <div class="col-xs-6 col-md-3">
+                    <div class="panel layui-bg-green">
+                        <div class="panel-body">
+                            <div class="panel-title">
+                                <h5>班级统计</h5>
+                            </div>
+                            <div class="panel-content">
+                                <h1 id="class_num" class="no-margins">null</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-col-md3">
+                <div class="col-xs-6 col-md-3">
+                    <div class="panel layui-bg-orange">
+                        <div class="panel-body">
+                            <div class="panel-title">
+                                <h5>专业统计</h5>
+                            </div>
+                            <div class="panel-content">
+                                <h1 id="major_num" class="no-margins">null</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-box">
+        <div class="layui-row layui-col-space10">
+            <div class="layui-col-md12">
+                <blockquote class="layui-elem-quote main_btn">
+                    <p>后端使用SpringBoot + Spring Security + MyBatis实现</p>
+                    <p>后台管理使用 Layuimini 实现</p>
+                    <p>如有问题，请直接在项目中提issue，会尽快回复，欢迎加个Star支持一下</p>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="../layui/layui.js" charset="utf-8"></script>
+<script>
+    layui.use(['layer'], function(){
+        var layer = layui.layer,
+            $ = layui.$;
+
+        $.ajax({
+            url: "/welcome",
+            method: "Get",
+            success: function (data) {
+                $("#stu_num").html(data.content.studentNum)
+                $("#user_num").html(data.content.teacherNum);
+                $("#class_num").html(data.content.clazzNum);
+                $("#major_num").html(data.content.majorNum);
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        })
+    });
+</script>
+</body>
+</html>

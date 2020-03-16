@@ -1,23 +1,23 @@
 package com.oxygen.studentinfo.entity;
 
 public class College {
-    private Integer collegeId;
+    private Integer id;
 
-    private String collegeName;
+    private String name;
 
-    public Integer getCollegeId() {
-        return collegeId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setCollegeId(Integer collegeId) {
-        this.collegeId = collegeId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getCollegeName() {
-        return collegeName;
+    public String getName() {
+        return name;
     }
 
-    public void setCollegeName(String collegeName) {
-        this.collegeName = collegeName == null ? null : collegeName.trim();
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 }

@@ -1,12 +1,21 @@
 server:
   port: 8080
+  servlet:
+    session:
+      timeout: 120
 
 spring:
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 100MB
+      max-request-size: 100MB
+
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://10.4.100.42:3306/studentinfo
-    username: studentinfo
+    url: jdbc:mysql://127.0.0.1:3306/studentinfo?characterEncoding=utf-8&serverTimezone=UTC
+    username: root
     password: 123456
 
     # 数据库连接池的配置
@@ -16,10 +25,27 @@ spring:
       max-total: 200           # 最大的连接数
       max-wait-millis: 200   # 等待连接获取的最大超时时间
 
-#  redis:
-#    host: 127.0.0.1
-#    port: 6379
+  # thymeleaf模板
+  thymeleaf:
+    encoding: utf-8
+    mode: HTML5
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
+
+  # 热部署
+  devtools:
+    restart:
+      enabled: true  #设置开启热部署
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
+
+
+logging:
+  file:
+    name: studentinfo.log
+    max-size: 2MB
+  level:
+    root: debug
 

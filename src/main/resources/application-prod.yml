@@ -1,5 +1,8 @@
 server:
   port: 8081
+  servlet:
+    session:
+      timeout: 120
 
 spring:
   datasource:
@@ -16,9 +19,24 @@ spring:
       max-total: 200           # 最大的连接数
       max-wait-millis: 200   # 等待连接获取的最大超时时间
 
+  # thymeleaf模板
+  thymeleaf:
+    encoding: utf-8
+    mode: HTML5
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
+
 #  redis:
 #    host: 127.0.0.1
 #    port: 6379
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
+
+logging:
+  file:
+    name: studentinfo.log
+    max-size: 2MB
+  level:
+    root: info

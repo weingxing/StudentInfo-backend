@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../css/public.css" media="all">
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-form layuimini-form">
+    <div class="layui-form-item">
+        <label class="layui-form-label required">工号</label>
+        <div class="layui-input-block">
+            <input type="text" name="tno" lay-verify="required" lay-reqtext="工号不能为空"
+                   placeholder="请输入工号，注意核对，添加后无法修改" value="" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label required">姓名</label>
+        <div class="layui-input-block">
+            <input type="text" name="name" lay-verify="required" lay-reqtext="姓名不能为空"
+                   placeholder="请输入姓名" value="" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">班级</label>
+        <div class="layui-input-inline">
+            <input type="text" name="" placeholder="请选择" autocomplete="off" class="layui-input" id="clazz">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="saveBtn">确认保存</button>
+        </div>
+    </div>
+</div>
+<script src="../../layui/layui.js" charset="utf-8"></script>
+<script src="../../js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+<script>
+    layui.use(['form', 'tableSelect'], function () {
+        var form = layui.form,
+            layer = layui.layer,
+            $ = layui.$,
+            jQuery = layui.jquery,
+            tableSelect = layui.tableSelect;
+        var clazz = null;
+
+        // 选择表单
+        tableSelect.render({
+            elem: '#clazz',
+            checkedKey: 'id',
+            table: {
+                url: 'http://127.0.0.1:8080/page/clazz/getAll',
+                cols: [[
+                    { type: 'radio' },
+                    { field: 'id', title: 'ID' },
+                    { field: 'name', title: '班级' },
+                    { field: 'grade', title: '年级' }
+                ]]
+            },
+            done: function (elem, data) {
+                $("#clazz").val(data.data[0]['name']);
+                clazz = data.data[0]['id']
+            }
+        });
+
+        //监听提交
+        form.on('submit(saveBtn)', function (data) {
+            data.field["clazzId"] = clazz;
+            console.log(data.field);
+            jQuery.ajax({
+                url: "/page/teacher/add",
+                data: data.field,
+                method: "Post",
+                success: function (data) {
+                    layer.msg("添加成功", {time: 1500}, function () {
+                        var iframeIndex = parent.layer.getFrameIndex(window.name);
+                        parent.layer.close(iframeIndex);
+                        parent.location.reload();
+                    });
+                },
+                error: function (data) {
+                    layer.msg("添加失败，该用户可能已存在", {time: 2000});
+                }
+            });
+
+            return false;
+        });
+
+    });
+</script>
+</body>
+</html>

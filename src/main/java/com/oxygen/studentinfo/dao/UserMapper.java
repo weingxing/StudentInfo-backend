@@ -3,15 +3,15 @@ package com.oxygen.studentinfo.dao;
 import com.oxygen.studentinfo.entity.User;
 
 public interface UserMapper {
-    int deleteByPrimaryKey(String tid);
+    int deleteByPrimaryKey(Integer uid);
 
     int insert(User record);
 
     int insertSelective(User record);
 
-    User selectByPrimaryKey(String tid);
+    User selectByPrimaryKey(Integer uid);
 
-    User selectByOpenid(String openid);
+    User selectByUsername(String name);
 
     int updateByPrimaryKeySelective(User record);
 

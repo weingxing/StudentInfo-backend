@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oxygen.studentinfo.dao.TeacherMapper" >
+  <resultMap id="BaseResultMap" type="com.oxygen.studentinfo.entity.Teacher" >
+    <id column="tno" property="tno" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="openid" property="openid" jdbcType="VARCHAR" />
+    <result column="clazz_id" property="clazzId" jdbcType="INTEGER" />
+  </resultMap>
+
+  <resultMap id="InfoResultMap" type="com.oxygen.studentinfo.dto.TeacherInfo" >
+    <id column="tno" property="tno" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="openid" property="openid" jdbcType="VARCHAR" />
+    <result column="cname" property="clazz" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    tno, name, openid, clazz_id
+  </sql>
+
+  <sql id="Info_Column_List" >
+    tno, teacher.name, openid, clazz.name as cname
+  </sql>
+
+  <select id="selectByOpenid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from teacher
+    where openid = #{openid,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from teacher
+    where tno = #{tno,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectAll" resultMap="InfoResultMap">
+    select
+    <include refid="Info_Column_List" />
+    from teacher left join clazz on teacher.clazz_id = clazz.id
+  </select>
+
+  <select id="selectAllByPage" resultMap="InfoResultMap" parameterType="java.util.Map">
+    select
+    <include refid="Info_Column_List" />
+    from teacher left join clazz on teacher.clazz_id = clazz.id
+    limit #{currIndex}, #{pageSize}
+  </select>
+
+  <select id="searchByPage" resultMap="InfoResultMap" parameterType="java.util.Map">
+    select
+    <include refid="Info_Column_List" />
+    from teacher left join clazz on teacher.clazz_id = clazz.id
+    where tno like #{keyword} or teacher.name like #{keyword} or clazz.name like #{keyword}
+    limit #{currIndex}, #{pageSize}
+  </select>
+
+  <select id="search" resultMap="InfoResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Info_Column_List" />
+    from teacher left join clazz on teacher.clazz_id = clazz.id
+    where tno like #{keyword} or teacher.name like #{keyword} or clazz.name like #{keyword}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from teacher
+    where tno = #{tno,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.oxygen.studentinfo.entity.Teacher" >
+    insert into teacher (tno, name, openid, clazz_id
+      )
+    values (#{tno,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+    #{openid,jdbcType=VARCHAR}, #{clazzId,jdbcType=INTEGER}
+      )
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.oxygen.studentinfo.entity.Teacher" >
+    insert into teacher
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tno != null" >
+        tno,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="openid != null" >
+        openid,
+      </if>
+      <if test="clazzId != null" >
+        clazz_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tno != null" >
+        #{tno,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null" >
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="clazzId != null" >
+        #{clazzId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.oxygen.studentinfo.entity.Teacher" >
+    update teacher
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null" >
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="clazzId != null" >
+        clazz_id = #{clazzId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where tno = #{tno,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.oxygen.studentinfo.entity.Teacher" >
+    update teacher
+    set name = #{name,jdbcType=VARCHAR},
+      openid = #{openid,jdbcType=VARCHAR},
+      clazz_id = #{clazzId,jdbcType=INTEGER}
+    where tno = #{tno,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

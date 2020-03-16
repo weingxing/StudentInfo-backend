@@ -2,58 +2,81 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.oxygen.studentinfo.dao.CollegeMapper" >
   <resultMap id="BaseResultMap" type="com.oxygen.studentinfo.entity.College" >
-    <id column="college_id" property="collegeId" jdbcType="INTEGER" />
-    <result column="college_name" property="collegeName" jdbcType="VARCHAR" />
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
   </resultMap>
-
   <sql id="Base_Column_List" >
-    college_id, college_name
+    id, name
   </sql>
 
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from college
-    where college_id = #{collegeId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </select>
 
-  <select id="selectAll" resultMap="BaseResultMap" >
+  <select id="selectByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from college
+    where name = #{name,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectAll" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from college
   </select>
 
-  <delete id="deleteByName" parameterType="java.lang.String" >
-    delete from college
-    where college_name = #{collegeName,jdbcType=VARCHAR}
-  </delete>
+  <select id="selectAllByPage" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select
+    <include refid="Base_Column_List" />
+    from college
+    limit #{currIndex}, #{pageSize}
+  </select>
+
+  <select id="search" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    from college
+    where id like #{keyword} or name like #{keyword}
+  </select>
+
+  <select id="searchByPage" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select
+    <include refid="Base_Column_List" />
+    from college
+    where id like #{keyword} or name like #{keyword}
+    limit #{currIndex}, #{pageSize}
+  </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from college
-    where college_id = #{collegeId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </delete>
 
   <insert id="insert" parameterType="com.oxygen.studentinfo.entity.College" >
-    insert into college (college_id, college_name)
-    values (#{collegeId,jdbcType=INTEGER}, #{collegeName,jdbcType=VARCHAR})
+    insert into college (id, name)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
   </insert>
 
   <insert id="insertSelective" parameterType="com.oxygen.studentinfo.entity.College" >
     insert into college
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="collegeId != null" >
-        college_id,
+      <if test="id != null" >
+        id,
       </if>
-      <if test="collegeName != null" >
-        college_name,
+      <if test="name != null" >
+        name,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="collegeId != null" >
-        #{collegeId,jdbcType=INTEGER},
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
       </if>
-      <if test="collegeName != null" >
-        #{collegeName,jdbcType=VARCHAR},
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -61,17 +84,17 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.oxygen.studentinfo.entity.College" >
     update college
     <set >
-      <if test="collegeName != null" >
-        college_name = #{collegeName,jdbcType=VARCHAR},
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
       </if>
     </set>
-    where college_id = #{collegeId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 
   <update id="updateByPrimaryKey" parameterType="com.oxygen.studentinfo.entity.College" >
     update college
-    set college_name = #{collegeName,jdbcType=VARCHAR}
-    where college_id = #{collegeId,jdbcType=INTEGER}
+    set name = #{name,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 
 </mapper>

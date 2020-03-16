@@ -2,58 +2,82 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.oxygen.studentinfo.dao.MajorMapper" >
   <resultMap id="BaseResultMap" type="com.oxygen.studentinfo.entity.Major" >
-    <id column="major_id" property="majorId" jdbcType="INTEGER" />
-    <result column="major_name" property="majorName" jdbcType="VARCHAR" />
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
   </resultMap>
 
   <sql id="Base_Column_List" >
-    major_id, major_name
+    id, name
   </sql>
 
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from major
-    where major_id = #{majorId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </select>
 
-  <select id="selectAll" resultMap="BaseResultMap" >
+  <select id="selectByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from major
+    where name = #{name,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectAll" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from major
   </select>
 
+  <select id="selectAllByPage" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select
+    <include refid="Base_Column_List" />
+    from major
+    limit #{currIndex}, #{pageSize}
+  </select>
+
+  <select id="search" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    from major
+    where id like #{keyword} or name like #{keyword}
+  </select>
+
+  <select id="searchByPage" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select
+    <include refid="Base_Column_List" />
+    from major
+    where id like #{keyword} or name like #{keyword}
+    limit #{currIndex}, #{pageSize}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from major
-    where major_id = #{majorId,jdbcType=INTEGER}
-  </delete>
-
-  <delete id="deleteByName" parameterType="java.lang.String" >
-    delete from major
-    where major_name = #{majorName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </delete>
 
   <insert id="insert" parameterType="com.oxygen.studentinfo.entity.Major" >
-    insert into major (major_id, major_name)
-    values (#{majorId,jdbcType=INTEGER}, #{majorName,jdbcType=VARCHAR})
+    insert into major (id, name)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
   </insert>
 
   <insert id="insertSelective" parameterType="com.oxygen.studentinfo.entity.Major" >
     insert into major
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="majorId != null" >
-        major_id,
+      <if test="id != null" >
+        id,
       </if>
-      <if test="majorName != null" >
-        major_name,
+      <if test="name != null" >
+        name,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="majorId != null" >
-        #{majorId,jdbcType=INTEGER},
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
       </if>
-      <if test="majorName != null" >
-        #{majorName,jdbcType=VARCHAR},
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -61,17 +85,17 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.oxygen.studentinfo.entity.Major" >
     update major
     <set >
-      <if test="majorName != null" >
-        major_name = #{majorName,jdbcType=VARCHAR},
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
       </if>
     </set>
-    where major_id = #{majorId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 
   <update id="updateByPrimaryKey" parameterType="com.oxygen.studentinfo.entity.Major" >
     update major
-    set major_name = #{majorName,jdbcType=VARCHAR}
-    where major_id = #{majorId,jdbcType=INTEGER}
+    set name = #{name,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 
 </mapper>

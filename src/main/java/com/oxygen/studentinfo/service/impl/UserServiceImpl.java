@@ -1,79 +1,36 @@
 package com.oxygen.studentinfo.service.impl;
 
-import cn.miludeer.jsoncode.JsonCode;
 import com.oxygen.studentinfo.dao.UserMapper;
+import com.oxygen.studentinfo.dto.PasswordChanger;
+import com.oxygen.studentinfo.dto.Response;
 import com.oxygen.studentinfo.entity.User;
 import com.oxygen.studentinfo.service.UserService;
-import com.oxygen.studentinfo.util.WechatUtil;
+import com.oxygen.studentinfo.config.RSAKey;
+import com.oxygen.studentinfo.util.RSAUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 @Service
 public class UserServiceImpl implements UserService {
-
     @Autowired
     private UserMapper userMapper;
-    @Override
-    public boolean addUser(User user) {
-        int res = userMapper.insert(user);
-
-        if (res >= 1)
-            return true;
-        return false;
-    }
 
     @Override
-    public boolean updateUserOpenid(User user) {
-        int res = userMapper.updateByPrimaryKey(user);
+    public Response changePassword(PasswordChanger passwordChanger) {
+        User user = new User();
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-        if (res >= 1)
-            return true;
-        return false;
-    }
-
-    @Override
-    public User findUserByTid(String tid) {
-        return userMapper.selectByPrimaryKey(tid);
-    }
-
-    @Override
-    public User findUserByOpenid(String openid) {
-        return userMapper.selectByOpenid(openid);
-    }
-
-    @Override
-    public boolean deleteUserByTid(String tid) {
-        int res = userMapper.deleteByPrimaryKey(tid);
-
-        if (res >= 1)
-            return true;
-        return false;
-    }
-
-    @Override
-    public boolean deleteUserByName(String name) {
-        return false;
-    }
-
-    @Override
-    public boolean resetUserByTid(User user) {
-        int res = userMapper.updateByPrimaryKey(user);
-
-        if (res >= 1)
-            return true;
-        return false;
-    }
-
-    public String getOpenid(String code) {
-        String requestRes = new WechatUtil().getOpenid(code);
-        if (requestRes.contains("openid")) {
-            return JsonCode.getValue(requestRes, "$.openid");
-        } else {
-            return "ERROR";
-        }
+        // 解密前端传来来的RSA密文，取得密码的明文
+        String password = RSAUtil.decrypt(RSAKey.privateKey, passwordChanger.getPassword());
+        user.setUid(passwordChanger.getUid());
+        // 密码明文经过BCrypt加密封装到user
+        user.setPassword(encoder.encode(password));
+        // 更新数据库
+        if (userMapper.updateByPrimaryKeySelective(user) > 0)
+            return new Response(new Date().toString(), 1, "修改成功", null);
+        return new Response(new Date().toString(), 0, "修改失败", null);
     }
 }

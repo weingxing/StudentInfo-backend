@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../css/public.css" media="all">
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-form layuimini-form">
+    <div class="layui-form-item">
+        <label class="layui-form-label required">学号</label>
+        <div class="layui-input-block">
+            <input id="sno" type="text" name="sno" lay-verify="required"
+                   lay-reqtext="学号不能为空" placeholder="请输入学号"
+                   value="" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label required">姓名</label>
+        <div class="layui-input-block">
+            <input id="name" type="text" name="name" lay-verify="required"
+                   lay-reqtext="姓名不能为空" placeholder="请输入姓名"
+                   value="" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label required">性别</label>
+        <div class="layui-input-block">
+            <input id="boy" type="radio" name="sex" value="男" title="男" checked="">
+            <input id="girl" type="radio" name="sex" value="女" title="女">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label required">类别</label>
+        <div class="layui-input-inline">
+            <input id="category" type="text" name="category" placeholder="请选择"
+                   lay-verify="required" lay-reqtext="类别不能为空"
+                   autocomplete="off" class="layui-input" id="category">
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label required">类别描述</label>
+        <div class="layui-input-block">
+            <textarea id="descCategory" name="descCategory" class="layui-textarea"
+                      lay-verify="required" lay-reqtext="类别描述不能为空"
+                      placeholder="请输入分为该类别的原因，如果没有请填写 无"></textarea>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label required">班级</label>
+        <div class="layui-input-inline">
+            <input id="clazz" type="text" name="clazz" placeholder="请选择"
+                   lay-verify="required" lay-reqtext="班级不能为空"
+                   autocomplete="off" class="layui-input" id="clazz">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label required">系别</label>
+        <div class="layui-input-inline">
+            <input id="department" type="text" name="department" placeholder="请选择"
+                   lay-verify="required" lay-reqtext="系别不能为空"
+                   autocomplete="off" class="layui-input" id="department">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label required">专业</label>
+        <div class="layui-input-inline">
+            <input id="major" type="text" name="major" placeholder="请选择"
+                   lay-verify="required" lay-reqtext="专业不能为空"
+                   autocomplete="off" class="layui-input" id="major">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label required">学院</label>
+        <div class="layui-input-inline">
+            <input id="college" type="text" name="college" placeholder="请选择"
+                   lay-verify="required" lay-reqtext="学院不能为空"
+                   autocomplete="off" class="layui-input" id="college">
+        </div>
+    </div>
+
+    <div class="layui-form-item required">
+        <label class="layui-form-label required">联系电话</label>
+        <div class="layui-input-block">
+            <input id="phone" type="number" name="phone"
+                   lay-verify="required" lay-reqtext="联系电话不能为空" placeholder="请输入手机号"
+                   value="" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item required">
+        <label class="layui-form-label required">身份证号</label>
+        <div class="layui-input-block">
+            <input id="idcard" type="text" name="idcard"
+                   lay-verify="required" lay-reqtext="身份证号不能为空" placeholder="请输入身份证号"
+                   value="" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label required">家庭住址</label>
+        <div class="layui-input-block">
+            <input id="address" type="text" name="address"
+                   lay-verify="required" lay-reqtext="家庭住址不能为空" placeholder="请输入家庭住址"
+                   value="" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label required">备注信息</label>
+        <div class="layui-input-block">
+            <textarea id="remark" name="remark" class="layui-textarea"
+                      lay-verify="required" lay-reqtext="备注信息不能为空"
+                      placeholder="请输入备注信息，如果没有请填写 无"></textarea>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="saveBtn">确认保存</button>
+        </div>
+    </div>
+</div>
+</div>
+<script src="../../layui/layui.js" charset="utf-8"></script>
+<script src="../../js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+<script src="../../js/util.js" charset="utf-8"></script>
+<script>
+    layui.use(['form', 'tableSelect'], function () {
+        var form = layui.form,
+            layer = layui.layer,
+            $ = layui.$,
+            tableSelect = layui.tableSelect;
+        var categoryId = null,
+            clazzId = null,
+            departmentId = null,
+            majorId = null,
+            collegeId = null;
+
+        // 监听页面渲染
+        $(document).ready(function () {
+            var sno = getQueryString("sno"),
+                name = getQueryString("name"),
+                sex = getQueryString("sex"),
+                category = getQueryString("category"),
+                descCategory = getQueryString("descCategory"),
+                clazz = getQueryString("clazz"),
+                major = getQueryString("major"),
+                department = getQueryString("department"),
+                college = getQueryString("college"),
+                phone = getQueryString("phone"),
+                idcard = getQueryString("idcard"),
+                address = getQueryString("address"),
+                remark = getQueryString("remark");
+
+            $("#sno").val(sno);
+            $("#name").val(name);
+            $("#category").val(category);
+            $("#descCategory").val(descCategory);
+            $("#clazz").val(clazz);
+            $("#major").val(major);
+            $("#department").val(department);
+            $("#college").val(college);
+            $("#phone").val(phone);
+            $("#idcard").val(idcard);
+            $("#address").val(address);
+            $("#remark").val(remark);
+
+
+
+            if(sex === '女') {
+                console.log(sex);
+                $("#girl").next().click();
+            }
+
+        });
+
+        // 类别选择表单
+        tableSelect.render({
+            elem: '#category',
+            checkedKey: 'id',
+            table: {
+                url: 'http://127.0.0.1:8080/page/category/getAll',
+                cols: [[
+                    { type: 'radio' },
+                    { field: 'id', title: 'ID' },
+                    { field: 'name', title: '名称' }
+                ]]
+            },
+            done: function (elem, data) {
+                categoryId = data.data[0]['id'];
+                $("#category").val(data.data[0]['name']);
+            }
+        });
+
+        // 班级选择表单
+        tableSelect.render({
+            elem: '#clazz',
+            checkedKey: 'id',
+            table: {
+                url: 'http://127.0.0.1:8080/page/clazz/getAll',
+                cols: [[
+                    { type: 'radio' },
+                    { field: 'id', title: 'ID' },
+                    { field: 'name', title: '名称' },
+                    { field: 'grade', title: '年级' }
+                ]]
+            },
+            done: function (elem, data) {
+                clazzId = data.data[0]['id'];
+                $("#clazz").val(data.data[0]['name']);
+            }
+        });
+
+        // 系别选择表单
+        tableSelect.render({
+            elem: '#department',
+            checkedKey: 'id',
+            table: {
+                url: 'http://127.0.0.1:8080/page/department/getAll',
+                cols: [[
+                    { type: 'radio' },
+                    { field: 'id', title: 'ID' },
+                    { field: 'name', title: '名称' }
+                ]]
+            },
+            done: function (elem, data) {
+                departmentId = data.data[0]['id'];
+                $("#department").val(data.data[0]['name']);
+            }
+        });
+
+        // 专业选择表单
+        tableSelect.render({
+            elem: '#major',
+            checkedKey: 'id',
+            table: {
+                url: 'http://127.0.0.1:8080/page/major/getAll',
+                cols: [[
+                    { type: 'radio' },
+                    { field: 'id', title: 'ID' },
+                    { field: 'name', title: '名称' }
+                ]]
+            },
+            done: function (elem, data) {
+                majorId = data.data[0]['id'];
+                $("#major").val(data.data[0]['name']);
+            }
+        });
+
+        // 学院选择表单
+        tableSelect.render({
+            elem: '#college',
+            checkedKey: 'id',
+            table: {
+                url: 'http://127.0.0.1:8080/page/college/getAll',
+                cols: [[
+                    {type: 'radio'},
+                    {field: 'id', title: 'ID'},
+                    {field: 'name', title: '名称'}
+                ]]
+            },
+            done: function (elem, data) {
+                collegeId = data.data[0]['id'];
+                $("#college").val(data.data[0]['name']);
+            }
+        });
+
+
+        // 监听提交
+        form.on('submit(saveBtn)', function (data) {
+            data.field["category"] = categoryId;
+            data.field["clazz"] = clazzId;
+            data.field["department"] = departmentId;
+            data.field["major"] = majorId;
+            data.field["college"] = collegeId;
+
+            $.ajax({
+                url: "/page/student/update",
+                data: data.field,
+                method: "Put",
+                success: function (data) {
+                    if (data.status)
+                        layer.msg("修改成功", {time: 1500}, function () {
+                            var iframeIndex = parent.layer.getFrameIndex(window.name);
+                            parent.layer.close(iframeIndex);
+                            parent.location.reload();
+                        });
+                    else
+                        layer.msg("修改失败", {time: 1500});
+                },
+                error: function (data) {
+                    layer.msg("Error", {time: 1500});
+                }
+            });
+
+            return false;
+        });
+
+    });
+</script>
+</body>
+</html>

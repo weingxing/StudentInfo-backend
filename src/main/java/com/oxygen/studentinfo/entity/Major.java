@@ -1,23 +1,23 @@
 package com.oxygen.studentinfo.entity;
 
 public class Major {
-    private Integer majorId;
+    private Integer id;
 
-    private String majorName;
+    private String name;
 
-    public Integer getMajorId() {
-        return majorId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setMajorId(Integer majorId) {
-        this.majorId = majorId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getMajorName() {
-        return majorName;
+    public String getName() {
+        return name;
     }
 
-    public void setMajorName(String majorName) {
-        this.majorName = majorName == null ? null : majorName.trim();
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 }

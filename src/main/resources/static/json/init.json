@@ -1,0 +1,77 @@
+{
+  "clearInfo": {
+    "clearUrl": ""
+  },
+  "homeInfo": {
+    "title": "首页",
+    "icon": "fa fa-home",
+    "href": "page/welcome.html"
+  },
+  "logoInfo": {
+    "title": "StudentInfo",
+    "image": "images/logo.png",
+    "href": "/home"
+  },
+  "menuInfo": {
+    "currency": {
+      "title": "常规管理",
+      "icon": "fa fa-address-book",
+      "child": [
+        {
+          "title": "学生管理",
+          "href": "page/student.html",
+          "icon": "fa fa-graduation-cap",
+          "target": "_self"
+        },
+        {
+          "title": "教师管理",
+          "href": "page/teacher.html",
+          "icon": "fa fa-user",
+          "target": "_self"
+        },
+        {
+          "title": "批量添加",
+          "href": "page/add.html",
+          "icon": "fa fa-sliders",
+          "target": "_self"
+        }
+      ]
+    },
+    "other": {
+      "title": "其他管理",
+      "icon": "fa fa-sliders",
+      "child": [
+        {
+          "title": "类别管理",
+          "href": "page/category.html",
+          "icon": "fa fa-bars",
+          "target": "_self"
+        },
+        {
+          "title": "学院管理",
+          "href": "page/college.html",
+          "icon": "fa fa-university",
+          "target": "_self"
+        },
+        {
+          "title": "专业管理",
+          "href": "page/major.html",
+          "icon": "fa fa-book",
+          "target": "_self"
+        },
+        {
+          "title": "班级管理",
+          "href": "page/class.html",
+          "icon": "fa fa-star",
+          "target": "_self"
+        },
+        {
+          "title": "系别管理",
+          "href": "page/department.html",
+          "icon": "fa fa-cubes",
+          "target": "_self"
+        }
+      ]
+    }
+  }
+}

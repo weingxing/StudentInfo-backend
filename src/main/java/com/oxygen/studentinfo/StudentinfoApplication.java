@@ -5,12 +5,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
 @SpringBootApplication
 @MapperScan("com.oxygen.studentinfo.dao")
-@RestController
 public class StudentinfoApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
@@ -21,12 +20,6 @@ public class StudentinfoApplication extends SpringBootServletInitializer {
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(StudentinfoApplication.class);
-	}
-
-	// 用来测试war包访问
-	@GetMapping("/")
-	public String home() {
-		return "Hello,World!";
 	}
 
 }

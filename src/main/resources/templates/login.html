@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>后台登录</title>
+		<link rel="stylesheet" type="text/css" href="./layui/css/layui.css" />
+		<link rel="stylesheet" type="text/css" href="./css/login.css" />
+	</head>
+
+	<body>
+		<div class="m-login-bg">
+			<div class="m-login">
+				<div class="m-login-warp">
+					<form class="layui-form">
+						<div class="m-logo">学生信息管理系统</div>
+
+						<div class="layui-form-item">
+							<input type="text" name="username" required lay-verify="username" placeholder="用户名" autocomplete="off" class="layui-input">
+						</div>
+						<div class="layui-form-item">
+							<input type="password" name="password" required lay-verify="password" placeholder="密码" autocomplete="off" class="layui-input">
+						</div>
+
+						<div class="layui-form-item m-login-btn">
+							<button class="layui-btn layui-btn-fluid" lay-submit lay-filter="login">登 录</button>
+						</div>
+					</form>
+				</div>
+
+				<p class="copyright">&copy;2019 Designed by <a href="https://www.mapletown.xyz">Oxygen</a></p>
+			</div>
+		</div>
+		<script src="./layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<script src="./js/cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script src="./js/jsencrypt.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="./js/util.js" type="text/javascript" charset="utf-8"></script>
+		<script src="./js/login.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+
+</html>

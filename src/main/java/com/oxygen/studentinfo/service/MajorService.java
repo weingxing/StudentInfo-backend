@@ -1,14 +1,22 @@
 package com.oxygen.studentinfo.service;
 
+import com.oxygen.studentinfo.dto.Page;
+import com.oxygen.studentinfo.dto.Response;
 import com.oxygen.studentinfo.entity.Major;
-
-import java.util.List;
+import com.oxygen.studentinfo.util.PageParam;
 
 public interface MajorService {
-    public boolean addMajor(Major major);
-    public boolean deleteMajorByID(int id);
-    public boolean deleteMajorByName(String name);
-    public boolean  updateMajorNameByID(Major major);
-    public List<Major> findAll();
-    public Major findById(int id);
+    public Response add(Major record);
+
+    public Response delete(int id);
+
+    public Response update(Major record);
+
+    public Page selectAll(PageParam param);
+
+    public Page search(String keyword, PageParam param);
+
+    public int getCount();
+
+    public Major selectByName(String name);
 }

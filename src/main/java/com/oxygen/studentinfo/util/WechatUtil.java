@@ -1,13 +1,16 @@
 package com.oxygen.studentinfo.util;
 
+import com.oxygen.studentinfo.config.WechatSK;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URLConnection;
 
 /**
+ * 微信小程序请求openid类
  * @author Oxygen
- * @data 2019/11/8
+ * @since 2019/11/8
  */
 public class WechatUtil {
 
@@ -16,7 +19,7 @@ public class WechatUtil {
      * @param url
      * @return String
      */
-    public  String sendGet(String url) {
+    public  static String sendGet(String url) {
         String result = null;
         BufferedReader in = null;
         try {
@@ -55,17 +58,15 @@ public class WechatUtil {
      * @param code
      * @return String JSON格式字符串
      */
-    public String getOpenid(String code) {
-        final String APP_ID = "xxxxxxxxx";
-        final String SECRET = "xxxxxxxx";
+    public static String getOpenid(String code) {
 
-        String url = "https://api.weixin.qq.com/sns/jscode2session?appid=" + APP_ID + "&secret=" +
-                SECRET + "&js_code=" + code + "&grant_type=authorization_code";
+        String url = "https://api.weixin.qq.com/sns/jscode2session?appid=" + WechatSK.APP_ID +
+                "&secret=" + WechatSK.SECRET + "&js_code=" + code + "&grant_type=authorization_code";
         return sendGet(url);
     }
 
     // 简单测试
     public static void main(String[] args) {
-        System.out.printf(new WechatUtil().getOpenid("123456"));
+        System.out.printf(WechatUtil.getOpenid("123456"));
     }
 }

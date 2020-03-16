@@ -1,78 +1,41 @@
 package com.oxygen.studentinfo.controller;
 
+import com.oxygen.studentinfo.dto.Page;
+import com.oxygen.studentinfo.dto.Response;
 import com.oxygen.studentinfo.entity.Major;
 import com.oxygen.studentinfo.service.MajorService;
+import com.oxygen.studentinfo.util.PageParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-
-/**
- * @author Oxygen
- * @data 2019/11/14
- *
- * 专业控制类
- */
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/page/major")
 public class MajorController {
     @Autowired
     private MajorService majorService;
 
-    @Autowired
-    private UserController userController;
-
-
-    @GetMapping("/addMajor")
-    public Object addMajor(@RequestParam(value = "majorName")String majorName,
-                              @RequestParam(value = "openid")String openid) {
-        if(new UserController().access(openid)) {
-            Major major = new Major();
-            major.setMajorName(majorName);
-
-            if(majorService.addMajor(major))
-                return "FINISHED";
-            else return "ERROR";
-
-        }
-        return "Access Denied";
+    @GetMapping(value = "/getAll", params = {"page", "limit"})
+    public Page getAll(int page, int limit) {
+        return majorService.selectAll(new PageParam(page, limit));
     }
 
-    @GetMapping("/getAllMajor")
-    public Object getAllMajor() {
-        return majorService.findAll();
+    @PostMapping(value = "/add", params = {"name"})
+    public Response add(Major major) {
+        return majorService.add(major);
     }
 
-    @GetMapping("/getMajorById")
-    public Object getMajorById(@RequestParam(value = "majorId")int majorId) {
-        return majorService.findById(majorId);
+    @DeleteMapping(value = "/delete", params = {"id"})
+    public Response delete(int id) {
+        return majorService.delete(id);
     }
 
-    @GetMapping("/deleteMajor")
-    public Object deleteMajorById(@RequestParam(value = "majorId")int majorId,
-                                  @RequestParam(value = "openid")String openid) {
-        if(userController.access(openid)) {
-            if(majorService.deleteMajorByID(majorId))
-                return "FINISHED";
-            else return "ERROR";
-        }
-        return "Access Denied";
+    @PutMapping(value = "/update", params = {"id", "name"})
+    public Response update(Major major) {
+        return majorService.update(major);
     }
 
-    @GetMapping("/updateMajorName")
-    public Object updateMajorName(@RequestParam(value = "majorId")int majorId,
-                                  @RequestParam(value = "newName")String newName,
-                                  @RequestParam(value = "openid")String openid) {
-        if(userController.access(openid)) {
-            Major major = new Major();
-            major.setMajorId(majorId);
-            major.setMajorName(newName);
-
-            if(majorService.updateMajorNameByID(major))
-                return "FINISHED";
-            else return "ERROR";
-        }
-        return "Access Denied";
+    @GetMapping(value = "/search", params = {"page", "limit", "keyword"})
+    public Page search(int page, int limit, String keyword) {
+        return majorService.search(keyword, new PageParam(page, limit));
     }
 }

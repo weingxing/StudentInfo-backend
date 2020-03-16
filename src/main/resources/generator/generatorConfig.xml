@@ -13,8 +13,8 @@
         </commentGenerator>
         <!--数据库链接URL，用户名、密码 -->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://10.4.100.42:3306/studentinfo?characterEncoding=utf-8"
-                        userId="studentinfo"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/studentinfo?characterEncoding=utf-8&amp;serverTimezone=UTC"
+                        userId="root"
                         password="123456">
         </jdbcConnection>
         <javaTypeResolver>
@@ -44,42 +44,53 @@
                enableDeleteByExample="false"
                enableSelectByExample="false"
                selectByExampleQueryId="false" />
-
-        <table tableName="info" domainObjectName="Info" enableCountByExample="false"
+        <table tableName="student" domainObjectName="Student"
+               enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"
                enableSelectByExample="false"
                selectByExampleQueryId="false" />
 
-        <table tableName="classroom" domainObjectName="ClassRoom" enableCountByExample="false"
+        <table tableName="clazz" domainObjectName="Clazz"
+               enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"
                enableSelectByExample="false"
                selectByExampleQueryId="false" />
 
-        <table tableName="college" domainObjectName="College" enableCountByExample="false"
+        <table tableName="college" domainObjectName="College"
+               enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"
                enableSelectByExample="false"
                selectByExampleQueryId="false" />
 
-        <table tableName="major" domainObjectName="Major" enableCountByExample="false"
+        <table tableName="teacher" domainObjectName="Teacher"
+               enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"
                enableSelectByExample="false"
                selectByExampleQueryId="false" />
 
-        <table tableName="category" domainObjectName="Category" enableCountByExample="false"
+        <table tableName="category" domainObjectName="Category"
+               enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"
                enableSelectByExample="false"
                selectByExampleQueryId="false" />
 
-        <table tableName="log" domainObjectName="Log" enableCountByExample="false"
+        <table tableName="department" domainObjectName="Department"
+               enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"
                enableSelectByExample="false"
                selectByExampleQueryId="false" />
 
+        <table tableName="major" domainObjectName="Major"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false" />
     </context>
 </generatorConfiguration>

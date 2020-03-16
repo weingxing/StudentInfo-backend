@@ -1,23 +1,23 @@
 package com.oxygen.studentinfo.entity;
 
 public class Category {
-    private Integer categoryId;
+    private Integer id;
 
-    private String categoryName;
+    private String name;
 
-    public Integer getCategoryId() {
-        return categoryId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getCategoryName() {
-        return categoryName;
+    public String getName() {
+        return name;
     }
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName == null ? null : categoryName.trim();
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 }
