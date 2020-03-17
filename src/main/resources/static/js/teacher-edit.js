@@ -5,6 +5,10 @@ layui.use(['form', 'tableSelect'], function () {
         tableSelect = layui.tableSelect;
     var clazz = null;
 
+    var url =  document.URL;
+    url = url.replace(/\/[^\/]+\/[^\/]+$/,"");
+    // console.log(url);
+
     // 监听页面渲染
     $(document).ready(function () {
         var tno = getQueryString("tno"),
@@ -24,7 +28,7 @@ layui.use(['form', 'tableSelect'], function () {
         elem: '#clazz',
         checkedKey: 'id',
         table: {
-            url: 'http://127.0.0.1:8080/page/clazz/getAll',
+            url: url+'/clazz/getAll',
             cols: [[
                 { type: 'radio' },
                 { field: 'id', title: 'ID' },

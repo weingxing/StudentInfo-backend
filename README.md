@@ -18,6 +18,10 @@
 
 ## 部署说明
 
+**请使用jar包方式进行部署，目前war包部署存在问题。**
+
+
+
 项目为微信小程序后端，需要搭配 [学生管理系统小程序端](https://github.com/weingxing/StudentInfo-fronted) 使用，克隆项目到本地，导入IDEA，修改数据库连接地址、用户名、密码等信息，导入数据库文件到数据库，数据库**studentinfo.sql**文件位于 **src/sql** 目录，修改**src\main\java\com\oxygen\studentinfo\config\WechatSK.java** 中的**APP_ID**和**SECRET** 为你的微信小程序APP_ID和SECRET，源码中使用 "XXXXXXX" 代替，不修改将无法正常使用微信小程序。运行mvn中的package命令，将项目打包为jar文件，可直接上传到服务器，通过
 
 ```shell

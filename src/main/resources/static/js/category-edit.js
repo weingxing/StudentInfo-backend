@@ -1,8 +1,8 @@
-layui.use(['form', 'tableSelect'], function () {
+layui.use(['form'], function () {
     var form = layui.form,
         layer = layui.layer,
-        $ = layui.$,
-        tableSelect = layui.tableSelect;
+        $ = layui.$;
+
     var clazz = null;
 
     // 监听页面渲染

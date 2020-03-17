@@ -154,6 +154,9 @@
             majorId = null,
             collegeId = null;
 
+        var url =  document.URL;
+        url = url.replace(/\/[^\/]+\/[^\/]+$/,"");
+
         // 监听页面渲染
         $(document).ready(function () {
             var sno = getQueryString("sno"),
@@ -197,7 +200,7 @@
             elem: '#category',
             checkedKey: 'id',
             table: {
-                url: 'http://127.0.0.1:8080/page/category/getAll',
+                url: url + '/category/getAll',
                 cols: [[
                     { type: 'radio' },
                     { field: 'id', title: 'ID' },
@@ -215,7 +218,7 @@
             elem: '#clazz',
             checkedKey: 'id',
             table: {
-                url: 'http://127.0.0.1:8080/page/clazz/getAll',
+                url: url + '/clazz/getAll',
                 cols: [[
                     { type: 'radio' },
                     { field: 'id', title: 'ID' },
@@ -234,7 +237,7 @@
             elem: '#department',
             checkedKey: 'id',
             table: {
-                url: 'http://127.0.0.1:8080/page/department/getAll',
+                url: url + '/department/getAll',
                 cols: [[
                     { type: 'radio' },
                     { field: 'id', title: 'ID' },
@@ -252,7 +255,7 @@
             elem: '#major',
             checkedKey: 'id',
             table: {
-                url: 'http://127.0.0.1:8080/page/major/getAll',
+                url: url + '/major/getAll',
                 cols: [[
                     { type: 'radio' },
                     { field: 'id', title: 'ID' },
@@ -270,7 +273,7 @@
             elem: '#college',
             checkedKey: 'id',
             table: {
-                url: 'http://127.0.0.1:8080/page/college/getAll',
+                url: url + '/college/getAll',
                 cols: [[
                     {type: 'radio'},
                     {field: 'id', title: 'ID'},
