@@ -53,7 +53,7 @@ public class TeacherServiceImpl implements TeacherService {
         if ("".equals(teacher.getOpenid()))
             teacher.setOpenid(null);
 
-        if (teacherMapper.updateByPrimaryKey(teacher) > 0)
+        if (teacherMapper.updateByPrimaryKeySelective(teacher) > 0)
             return new Response(new Date().toString(), 1, "修改成功", null);
         return new Response(new Date().toString(), 0, "修改失败", null);
     }

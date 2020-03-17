@@ -54,12 +54,12 @@ public class MiniController {
         Teacher t = teacherService.selectByTno(teacher.getTno());
 
         if (t != null) {
-            if (t.getName().equals(teacher.getName())) {
+            if (t.getName().equals(teacher.getName()) && t.getOpenid() == null) {
                 teacherService.update(teacher);
                 return new Response(new Date().toString(), 1, "绑定成功", true);
             }
         }
-        return new Response(new Date().toString(), 0, "不存在信息", false);
+        return new Response(new Date().toString(), 0, "绑定失败", false);
     }
 
     @GetMapping(value = "/search", params = {"page", "limit", "keyword", "openid"})

@@ -116,9 +116,9 @@
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="openid != null" >
+
         openid = #{openid,jdbcType=VARCHAR},
-      </if>
+
       <if test="clazzId != null" >
         clazz_id = #{clazzId,jdbcType=INTEGER},
       </if>
