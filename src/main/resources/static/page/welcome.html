@@ -85,39 +85,72 @@
             </div>
         </div>
     </div>
-
-    <div class="layui-box">
-        <div class="layui-row layui-col-space10">
-            <div class="layui-col-md12">
-                <blockquote class="layui-elem-quote main_btn">
-                    <p>后端使用SpringBoot + Spring Security + MyBatis实现</p>
-                    <p>后台管理使用 Layuimini 实现</p>
-                    <p>如有问题，请直接在项目中提issue，会尽快回复，欢迎加个Star支持一下</p>
-                </blockquote>
+    <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">正在审核：</label>
+            <div class="layui-input-block">
+                <input id="switch" type="checkbox" name="status" lay-skin="switch"
+                       lay-text="是|否" lay-filter="switch">
             </div>
         </div>
-    </div>
-
+    </form>
 </div>
+
+<div class="layui-box">
+    <div class="layui-row layui-col-space10">
+        <div class="layui-col-md12">
+            <blockquote class="layui-elem-quote main_btn">
+                <p>审核状态开关请勿随意设置</p>
+                <p>如果使用过程中有问题，请联系：</p>
+                <p>手机：17753660307</p>
+                <p>QQ：2451809588</p>
+            </blockquote>
+        </div>
+    </div>
+</div>
+
 <script src="../layui/layui.js" charset="utf-8"></script>
 <script>
-    layui.use(['layer'], function(){
+    layui.use(['layer', 'form'], function(){
         var layer = layui.layer,
-            $ = layui.$;
+            $ = layui.$,
+            form = layui.form;
 
         $.ajax({
             url: "/welcome",
             method: "Get",
             success: function (data) {
-                $("#stu_num").html(data.content.studentNum)
+                $("#stu_num").html(data.content.studentNum);
                 $("#user_num").html(data.content.teacherNum);
                 $("#class_num").html(data.content.clazzNum);
                 $("#major_num").html(data.content.majorNum);
+                if (data.content.status === 1) {
+                    $("#switch").attr("checked",true);
+                    form.render();
+                }
             },
             error: function (data) {
-                console.log(data);
+                console.error(data);
             }
-        })
+        });
+
+        form.on('switch(switch)', function (data) {
+            // console.log(this.checked);
+            $.ajax({
+                url: "/updateStatus",
+                method: "Get",
+                data: {"status": this.checked},
+                success: function (data) {
+                    // console.log(data);
+                    if(data.message === '修改成功') {
+                        layer.msg("修改成功");
+
+                    } else
+                        layer.msg("修改失败");
+                }
+            });
+        });
+
     });
 </script>
 </body>

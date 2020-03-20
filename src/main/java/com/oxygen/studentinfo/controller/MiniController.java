@@ -7,6 +7,7 @@ import com.oxygen.studentinfo.dto.Response;
 import com.oxygen.studentinfo.entity.Student;
 import com.oxygen.studentinfo.entity.Teacher;
 import com.oxygen.studentinfo.service.ClazzService;
+import com.oxygen.studentinfo.service.StatusService;
 import com.oxygen.studentinfo.service.StudentService;
 import com.oxygen.studentinfo.service.TeacherService;
 import com.oxygen.studentinfo.util.PageParam;
@@ -34,6 +35,8 @@ public class MiniController {
     private StudentService studentService;
     @Autowired
     private ClazzService clazzService;
+    @Autowired
+    private StatusService statusService;
 
     @GetMapping(value = "/login", params = {"code"})
     public Response login(String code) {
@@ -105,4 +108,10 @@ public class MiniController {
         }
         return new Response(new Date().toString(), 0, "不存在信息", null);
     }
+
+    @GetMapping("/getStatus")
+    public Response getStatus() {
+        return statusService.getStatus();
+    }
+
 }

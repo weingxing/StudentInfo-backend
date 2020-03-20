@@ -2,6 +2,7 @@ package com.oxygen.studentinfo.controller;
 
 import com.oxygen.studentinfo.dto.Response;
 import com.oxygen.studentinfo.dto.Welcome;
+import com.oxygen.studentinfo.entity.Status;
 import com.oxygen.studentinfo.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +34,8 @@ public class LoginController {
     private MajorService majorService;
     @Autowired
     private TeacherService teacherService;
+    @Autowired
+    private StatusService statusService;
 
     @GetMapping("/home")
     public String test() {
@@ -70,6 +73,19 @@ public class LoginController {
 
         return new Response(new Date().toString(), 1,
                 "", new Welcome(studentService.getCount(), teacherService.getCount(),
-                clazzService.getCount(), majorService.getCount()));
+                clazzService.getCount(), majorService.getCount(), statusService.getStatusCode()));
+    }
+
+    @GetMapping(value = "/updateStatus", params = {"status"})
+    @ResponseBody
+    public Response update(boolean status) {
+        Status record = new Status();
+        record.setId(1);
+        if(status)
+            record.setStatus(1);
+        else
+            record.setStatus(0);
+        System.out.println(record.getStatus());
+        return statusService.update(record);
     }
 }

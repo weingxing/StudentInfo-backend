@@ -198,4 +198,19 @@ CREATE TABLE `user`  (
 -- ----------------------------
 INSERT INTO `user` VALUES (1, 'admin', '$2a$10$ghOI399AZRpJdXkLbs3gCOWz/3m.xG6SempIutia8ZCN0nKTrw9am');
 
+-- ----------------------------
+-- Table structure for status
+-- ----------------------------
+DROP TABLE IF EXISTS `status`;
+CREATE TABLE `status`  (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `status` int(10) NOT NULL COMMENT '状态，1为审核，0为完成审核',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of status
+-- ----------------------------
+INSERT INTO `status` VALUES (1, 1);
+
 SET FOREIGN_KEY_CHECKS = 1;

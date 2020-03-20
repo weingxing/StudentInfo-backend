@@ -12,4 +12,5 @@ public class Welcome {
     private int teacherNum;
     private int clazzNum;
     private int majorNum;
+    private int status;
 }
