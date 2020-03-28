@@ -24,13 +24,19 @@ public class UserServiceImpl implements UserService {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
         // 解密前端传来来的RSA密文，取得密码的明文
+        String oldPassword = RSAUtil.decrypt(RSAKey.privateKey, passwordChanger.getOldPassword());
         String password = RSAUtil.decrypt(RSAKey.privateKey, passwordChanger.getPassword());
         user.setUid(passwordChanger.getUid());
         // 密码明文经过BCrypt加密封装到user
         user.setPassword(encoder.encode(password));
-        // 更新数据库
-        if (userMapper.updateByPrimaryKeySelective(user) > 0)
-            return new Response(new Date().toString(), 1, "修改成功", null);
+        // 验证旧密码
+        if (encoder.matches(oldPassword,
+                userMapper.selectByPrimaryKey(passwordChanger.getUid()).getPassword())) {
+            // 更新数据库
+            if (userMapper.updateByPrimaryKeySelective(user) > 0)
+                return new Response(new Date().toString(), 1, "修改成功", null);
+        }
+
         return new Response(new Date().toString(), 0, "修改失败", null);
     }
 }
