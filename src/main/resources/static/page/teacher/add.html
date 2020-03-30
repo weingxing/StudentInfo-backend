@@ -55,12 +55,16 @@
             tableSelect = layui.tableSelect;
         var clazz = null;
 
+        var url =  document.URL;
+        url = url.replace(/\/[^\/]+\/[^\/]+\/[^\/]+$/,"");
+        // console.log(url);
+
         // 选择表单
         tableSelect.render({
             elem: '#clazz',
             checkedKey: 'id',
             table: {
-                url: 'http://127.0.0.1:8080/page/clazz/getAll',
+                url: url + '/page/clazz/getAll',
                 cols: [[
                     { type: 'radio' },
                     { field: 'id', title: 'ID' },

@@ -6,7 +6,7 @@ layui.use(['form', 'tableSelect'], function () {
     var clazz = null;
 
     var url =  document.URL;
-    url = url.replace(/\/[^\/]+\/[^\/]+$/,"");
+    url = url.replace(/\/[^\/]+\/[^\/]+\/[^\/]+$/,"");
     // console.log(url);
 
     // 监听页面渲染
@@ -28,7 +28,7 @@ layui.use(['form', 'tableSelect'], function () {
         elem: '#clazz',
         checkedKey: 'id',
         table: {
-            url: url+'/clazz/getAll',
+            url: url+'/page/clazz/getAll',
             cols: [[
                 { type: 'radio' },
                 { field: 'id', title: 'ID' },

@@ -155,7 +155,7 @@
             collegeId = null;
 
         var url =  document.URL;
-        url = url.replace(/\/[^\/]+\/[^\/]+$/,"");
+        url = url.replace(/\/[^\/]+\/[^\/]+\/[^\/]+$/,"");
 
         // 监听页面渲染
         $(document).ready(function () {
@@ -198,7 +198,7 @@
             elem: '#category',
             checkedKey: 'id',
             table: {
-                url: url + '/category/getAll',
+                url: url + '/page/category/getAll',
                 cols: [[
                     { type: 'radio' },
                     { field: 'id', title: 'ID' },
@@ -216,7 +216,7 @@
             elem: '#clazz',
             checkedKey: 'id',
             table: {
-                url: url + '/clazz/getAll',
+                url: url + '/page/clazz/getAll',
                 cols: [[
                     { type: 'radio' },
                     { field: 'id', title: 'ID' },
@@ -235,7 +235,7 @@
             elem: '#department',
             checkedKey: 'id',
             table: {
-                url: url + '/department/getAll',
+                url: url + '/page/department/getAll',
                 cols: [[
                     { type: 'radio' },
                     { field: 'id', title: 'ID' },
@@ -253,7 +253,7 @@
             elem: '#major',
             checkedKey: 'id',
             table: {
-                url: url + '/major/getAll',
+                url: url + '/page/major/getAll',
                 cols: [[
                     { type: 'radio' },
                     { field: 'id', title: 'ID' },
@@ -271,7 +271,7 @@
             elem: '#college',
             checkedKey: 'id',
             table: {
-                url: url + '/college/getAll',
+                url: url + '/page/college/getAll',
                 cols: [[
                     {type: 'radio'},
                     {field: 'id', title: 'ID'},

@@ -152,12 +152,16 @@
             major = null,
             college = null;
 
+        var url =  document.URL;
+        url = url.replace(/\/[^\/]+\/[^\/]+\/[^\/]+$/,"");
+        // console.log(url);
+
         // 类别选择表单
         tableSelect.render({
             elem: '#category',
             checkedKey: 'id',
             table: {
-                url: 'http://127.0.0.1:8080/page/category/getAll',
+                url: url + '/page/category/getAll',
                 cols: [[
                     { type: 'radio' },
                     { field: 'id', title: 'ID' },
@@ -175,7 +179,7 @@
             elem: '#clazz',
             checkedKey: 'id',
             table: {
-                url: 'http://127.0.0.1:8080/page/clazz/getAll',
+                url: url + '/page/clazz/getAll',
                 cols: [[
                     { type: 'radio' },
                     { field: 'id', title: 'ID' },
@@ -194,7 +198,7 @@
             elem: '#department',
             checkedKey: 'id',
             table: {
-                url: 'http://127.0.0.1:8080/page/department/getAll',
+                url: url + '/page/department/getAll',
                 cols: [[
                     { type: 'radio' },
                     { field: 'id', title: 'ID' },
@@ -212,7 +216,7 @@
             elem: '#major',
             checkedKey: 'id',
             table: {
-                url: 'http://127.0.0.1:8080/page/major/getAll',
+                url: url + '/page/major/getAll',
                 cols: [[
                     { type: 'radio' },
                     { field: 'id', title: 'ID' },
@@ -230,7 +234,7 @@
             elem: '#college',
             checkedKey: 'id',
             table: {
-                url: 'http://127.0.0.1:8080/page/college/getAll',
+                url: url + '/page/college/getAll',
                 cols: [[
                     { type: 'radio' },
                     { field: 'id', title: 'ID' },

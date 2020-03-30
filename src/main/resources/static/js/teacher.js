@@ -16,11 +16,11 @@ layui.use(['form', 'table'], function () {
         }],
         cols: [[
             {type: "checkbox", width: 50, fixed: "left", align: "center"},
-            {field: 'tno', width: 200, title: '工号', align: "center"},
-            {field: 'name', width: 200, title: '姓名', align: "center"},
-            {field: 'clazz', width: 200, title: '行政班级', align: "center"},
+            {field: 'tno', width: 150, title: '工号', align: "center"},
+            {field: 'name', width: 150, title: '姓名', align: "center"},
+            {field: 'clazz', width: 150, title: '行政班级', align: "center"},
             {field: 'openid', width: 400, title: 'openid', align: "center"},
-            {title: '操作', minWidth: 50, templet: '#currentTableBar', fixed: "right", align: "center"}
+            {title: '操作', minWidth: 150, templet: '#currentTableBar', fixed: "right", align: "center"}
         ]],
         limits: [10, 15, 20, 25, 50],
         limit: 15,
