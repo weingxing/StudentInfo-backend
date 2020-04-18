@@ -13,6 +13,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
+/**
+ * 用户服务接口实现类
+ */
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired

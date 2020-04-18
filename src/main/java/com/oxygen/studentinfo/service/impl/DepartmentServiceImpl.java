@@ -12,6 +12,9 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * 系别服务接口实现类
+ */
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
     @Autowired

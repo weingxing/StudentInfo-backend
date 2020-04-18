@@ -13,14 +13,17 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Date;
 
+/**
+ * 文件按上传下载服务实现类
+ */
 @Service
 public class FileServiceImpl implements FileService {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
     public Response upload(MultipartFile file) {
-        // 文件上传路径
-        String path = "D:/";
+        // 文件上传路径（请根据实际修改）
+        String path = "/root/upload";
         if(file.isEmpty()){
             logger.info("空文件");
             return new Response(new Date().toString(), 0, "上传失败", null);
@@ -55,6 +58,7 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
+    // 暂时用不到，未实现
     public Response download(HttpServletRequest request) {
         return null;
     }

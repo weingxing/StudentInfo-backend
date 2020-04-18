@@ -4,6 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
+/**
+ * 教师信息，同StudentInfo
+ * @author oxygen
+ * @since 2020/1/25
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

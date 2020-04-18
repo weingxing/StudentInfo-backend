@@ -13,6 +13,9 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * 专业服务接口实现类
+ */
 @Service
 public class MajorServiceImpl implements MajorService {
     @Autowired

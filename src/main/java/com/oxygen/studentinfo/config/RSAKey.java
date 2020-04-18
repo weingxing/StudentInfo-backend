@@ -1,5 +1,8 @@
 package com.oxygen.studentinfo.config;
 
+/**
+ * RSA加密私钥
+ */
 public class RSAKey {
     public static final String privateKey = "MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCKxKVFK7v55yAt2lhTtvm5E3z/\n" +
             "qSlaPBFNNyfPqWnKHqUTvT2xTXoLLDYrlga/mjIvdxjX3SdbB1qg6HFSWg2lvorXU052Hp89Zo3F\n" +

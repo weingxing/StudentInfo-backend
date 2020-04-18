@@ -4,6 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
+/**
+ * 实际学生信息类
+ * entity包中的Student对应数据库的字段，数据库中班级等信息为外键，存储的是 id 编号
+ * 将数据连接查询后封装为这个类，班级等信息为字符串（实际信息，非 id 编号）
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

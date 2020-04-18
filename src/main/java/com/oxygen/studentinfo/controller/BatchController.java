@@ -16,6 +16,12 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.Date;
 import java.util.List;
 
+
+/**
+ * 批量添加学生信息
+ * @author oxygen
+ * @since 2020/03/06
+ */
 @RestController
 @RequestMapping("/page/api")
 public class BatchController {

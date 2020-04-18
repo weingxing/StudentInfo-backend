@@ -9,6 +9,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 
+/**
+ * SpringSecurity配置类，控制访问权限、设置密码编码器
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConﬁg extends WebSecurityConfigurerAdapter {
@@ -30,21 +33,21 @@ public class SecurityConﬁg extends WebSecurityConfigurerAdapter {
                             "/css/**",
                             "/js/**",
                             "/images/**",
-                            "/login")
+                            "/login")  // 无需登录，可以直接访问
                     .permitAll()
                     .anyRequest().authenticated()
                     .and()
                     .formLogin()
-                    .loginPage("/login")
+                    .loginPage("/login")  // 指定登录页面
                     .permitAll()
-                    .successForwardUrl("/login?status=successful")
-                    .failureForwardUrl("/login?status=error")
+                    .successForwardUrl("/login?status=successful") // 登陆成功跳转
+                    .failureForwardUrl("/login?status=error")  // 登陆失败跳转
                     .and()
                     .logout()
                     .permitAll()
                     .and()
                     .csrf()
-                    .disable();
+                    .disable();  // 关闭跨域
         } catch (Exception e){
             e.printStackTrace();
         }

@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * 班级服务接口实现类
+ */
 @Service
 public class ClazzServiceImpl implements ClazzService {
     @Autowired

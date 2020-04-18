@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
+/**
+ * 审核状态服务接口实现类
+ */
 @Service
 public class StatusServiceImpl implements StatusService {
     @Autowired

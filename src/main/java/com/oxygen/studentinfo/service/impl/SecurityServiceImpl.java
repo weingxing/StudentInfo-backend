@@ -9,6 +9,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+/**
+ * SpringSecurity 服务接口实现类
+ */
 @Service
 public class SecurityServiceImpl implements SecurityService {
     @Autowired

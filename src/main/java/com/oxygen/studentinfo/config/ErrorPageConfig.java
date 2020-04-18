@@ -6,6 +6,13 @@ import org.springframework.boot.web.server.ErrorPageRegistry;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 
+
+/**
+ * 错误页面配置类
+ * @author oxygen
+ * @since 2020/03/12
+ *
+ */
 @Configuration
 public class ErrorPageConfig implements ErrorPageRegistrar {
     @Override

@@ -250,4 +250,10 @@ public class RSAUtil {
         }
         return null;
     }
+
+    public static void main(String[] args) {
+        String path = "F:/";
+        generateKeyPair(path);
+        System.out.println("生成密钥对完成");
+    }
 }

@@ -7,8 +7,6 @@ import com.oxygen.studentinfo.dto.TeacherInfo;
 import com.oxygen.studentinfo.entity.Teacher;
 import com.oxygen.studentinfo.service.TeacherService;
 import com.oxygen.studentinfo.util.PageParam;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,10 +14,11 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * 教师服务接口实现类
+ */
 @Service
 public class TeacherServiceImpl implements TeacherService {
-    private Logger logger = LoggerFactory.getLogger(TeacherServiceImpl.class);
-
     @Autowired
     private TeacherMapper teacherMapper;
 
@@ -50,6 +49,7 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Override
     public Response update(Teacher teacher) {
+        // 如果在后台点击了 清除openid，会接收到一个空字符串，将openid设为null
         if ("".equals(teacher.getOpenid()))
             teacher.setOpenid(null);
 
