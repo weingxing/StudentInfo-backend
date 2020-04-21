@@ -1,5 +1,6 @@
 package com.oxygen.studentinfo.service.impl;
 
+import com.oxygen.studentinfo.config.CommonConfig;
 import com.oxygen.studentinfo.dto.Response;
 import com.oxygen.studentinfo.service.FileService;
 import org.slf4j.Logger;
@@ -21,9 +22,9 @@ public class FileServiceImpl implements FileService {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
-    public Response upload(MultipartFile file) {
-        // 文件上传路径（请根据实际修改）
-        String path = "/root/upload";
+    public Response upload(MultipartFile file) throws Exception {
+        // 文件上传路径
+        String path = CommonConfig.path;
         if(file.isEmpty()){
             logger.info("空文件");
             return new Response(new Date().toString(), 0, "上传失败", null);
@@ -59,7 +60,7 @@ public class FileServiceImpl implements FileService {
 
     @Override
     // 暂时用不到，未实现
-    public Response download(HttpServletRequest request) {
+    public Response download(HttpServletRequest request) throws Exception {
         return null;
     }
 }

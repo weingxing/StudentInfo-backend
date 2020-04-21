@@ -16,28 +16,28 @@ public interface ClazzService {
      * @param record
      * @return
      */
-    public Response add(Clazz record);
+    public Response add(Clazz record) throws Exception;
 
     /**
      * 删除班级（根据id）
      * @param id
      * @return
      */
-    public Response delete(int id);
+    public Response delete(int id) throws Exception;
 
     /**
      * 更新班级信息（根据id）
      * @param record
      * @return
      */
-    public Response update(Clazz record);
+    public Response update(Clazz record) throws Exception;
 
     /**
      * 查询所有班级，分页返回数据
      * @param param
      * @return
      */
-    public Page selectAll(PageParam param);
+    public Page selectAll(PageParam param) throws Exception;
 
     /**
      * 根据关键词搜索班级，分页返回输数据
@@ -45,24 +45,24 @@ public interface ClazzService {
      * @param param
      * @return
      */
-    public Page search(String keyword, PageParam param);
+    public Page search(String keyword, PageParam param) throws Exception;
 
     /**
      * 取得班级数量
      * @return
      */
-    public int getCount();
+    public int getCount() throws Exception;
 
     /**
      * 取得所有年级，理论上不会超过四个（大一 ~ 大四），所以没有进行分页
      * @return
      */
-    public Response getGrade();
+    public Response getGrade() throws Exception;
 
     /**
      * 根据名称选择班级
      * @param name
      * @return
      */
-    public  Clazz selectByName(String name);
+    public  Clazz selectByName(String name) throws Exception;
 }

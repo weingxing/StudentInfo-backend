@@ -14,5 +14,5 @@ public interface UserService {
      * @param passwordChanger
      * @return
      */
-    public Response changePassword(PasswordChanger passwordChanger);
+    public Response changePassword(PasswordChanger passwordChanger) throws Exception;
 }

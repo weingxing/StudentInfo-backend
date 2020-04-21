@@ -18,20 +18,20 @@ public class StatusServiceImpl implements StatusService {
     private StatusMapper statusMapper;
 
     @Override
-    public Response update(Status record) {
+    public Response update(Status record) throws Exception {
         if(statusMapper.updateByPrimaryKey(record) > 0)
             return new Response(new Date().toString(), 1, "修改成功", null);
         return new Response(new Date().toString(), 1, "修改失败", null);
     }
 
     @Override
-    public Response getStatus() {
+    public Response getStatus() throws Exception {
         Status status = statusMapper.selectByPrimaryKey(1);
         return new Response(new Date().toString(), 1, "", status.getStatus());
     }
 
     @Override
-    public int getStatusCode() {
+    public int getStatusCode() throws Exception {
         return statusMapper.selectByPrimaryKey(1).getStatus();
     }
 }

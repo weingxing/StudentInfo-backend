@@ -22,28 +22,28 @@ public class MajorServiceImpl implements MajorService {
     private MajorMapper majorMapper;
 
     @Override
-    public Response add(Major record) {
+    public Response add(Major record) throws Exception {
         if (majorMapper.insert(record) > 0)
             return new Response(new Date().toString(), 1, "添加成功", null);
         return new Response(new Date().toString(), 0, "添加失败", null);
     }
 
     @Override
-    public Response delete(int id) {
+    public Response delete(int id) throws Exception {
         if (majorMapper.deleteByPrimaryKey(id) > 0)
             return new Response(new Date().toString(), 1, "删除成功", null);
         return new Response(new Date().toString(), 1, "删除失败", null);
     }
 
     @Override
-    public Response update(Major record) {
+    public Response update(Major record) throws Exception {
         if (majorMapper.updateByPrimaryKeySelective(record) > 0)
             return new Response(new Date().toString(), 1, "更新成功", null);
         return new Response(new Date().toString(), 1, "更新失败", null);
     }
 
     @Override
-    public Page selectAll(PageParam param) {
+    public Page selectAll(PageParam param) throws Exception {
         List<Major> data = majorMapper.selectAllByPage(param.getData());
         int count = majorMapper.selectAll().size();
 
@@ -52,7 +52,7 @@ public class MajorServiceImpl implements MajorService {
     }
 
     @Override
-    public Page search(String keyword, PageParam param) {
+    public Page search(String keyword, PageParam param) throws Exception {
         param.put("keyword", "%" + keyword + "%");
         int count = majorMapper.search("%" + keyword + "%").size();
         List<Major> data = majorMapper.searchByPage(param.getData());
@@ -62,12 +62,12 @@ public class MajorServiceImpl implements MajorService {
     }
 
     @Override
-    public int getCount() {
+    public int getCount() throws Exception {
         return majorMapper.selectAll().size();
     }
 
     @Override
-    public Major selectByName(String name) {
+    public Major selectByName(String name) throws Exception {
         return majorMapper.selectByName(name);
     }
 }

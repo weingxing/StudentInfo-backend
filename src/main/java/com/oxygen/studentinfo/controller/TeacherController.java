@@ -20,28 +20,28 @@ public class TeacherController {
     private TeacherService teacherService;
 
     @GetMapping(value = "/getAll", params = {"page", "limit"})
-    public Page getAll(int page, int limit) {
+    public Page getAll(int page, int limit) throws Exception {
         PageParam param = new PageParam(page, limit);
         return teacherService.selectAll(param);
     }
 
     @GetMapping(value = "/search", params = {"page", "limit", "keyword"})
-    public Page search(int page, int limit, String keyword) {
+    public Page search(int page, int limit, String keyword) throws Exception {
         return teacherService.search(keyword, new PageParam(page, limit));
     }
 
     @DeleteMapping(value = "/delete", params = {"tno"})
-    public Response delete(String tno) {
+    public Response delete(String tno) throws Exception {
         return teacherService.delete(tno);
     }
 
     @PostMapping(value = "/add", params = {"tno", "name", "clazzId"})
-    public Response add(Teacher teacher) {
+    public Response add(Teacher teacher) throws Exception {
         return teacherService.add(teacher);
     }
 
     @PutMapping(value = "/update", params = {"tno", "name", "openid", "clazzId"})
-    public Response update(Teacher teacher) {
+    public Response update(Teacher teacher) throws Exception {
         return teacherService.update(teacher);
     }
 }

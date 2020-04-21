@@ -26,7 +26,7 @@ public class CategoryController {
      * @return Page
      */
     @GetMapping(value = "/getAll", params = {"page", "limit"})
-    public Page getAll(int page, int limit) {
+    public Page getAll(int page, int limit) throws Exception {
         return categoryService.selectAll(new PageParam(page, limit));
     }
 
@@ -36,7 +36,7 @@ public class CategoryController {
      * @return Response
      */
     @PostMapping(value = "/add", params = {"name"})
-    public Response add(Category category) {
+    public Response add(Category category) throws Exception {
         return categoryService.add(category);
     }
 
@@ -47,7 +47,7 @@ public class CategoryController {
      * @return Response
      */
     @DeleteMapping(value = "/delete", params = {"id"})
-    public Response delete(int id) {
+    public Response delete(int id) throws Exception {
         return categoryService.delete(id);
     }
 
@@ -57,7 +57,7 @@ public class CategoryController {
      * @return
      */
     @PutMapping(value = "/update", params = {"id", "name"})
-    public Response update(Category category) {
+    public Response update(Category category) throws Exception {
         return categoryService.update(category);
     }
 
@@ -69,7 +69,7 @@ public class CategoryController {
      * @return Page
      */
     @GetMapping(value = "/search", params = {"page", "limit", "keyword"})
-    public Page search(int page, int limit, String keyword) {
+    public Page search(int page, int limit, String keyword) throws Exception {
         return categoryService.search(keyword, new PageParam(page, limit));
     }
 }

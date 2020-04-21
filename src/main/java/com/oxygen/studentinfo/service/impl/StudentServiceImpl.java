@@ -22,7 +22,7 @@ public class StudentServiceImpl implements StudentService {
     private StudentMapper studentMapper;
 
     @Override
-    public Page selectAll(PageParam param) {
+    public Page selectAll(PageParam param) throws Exception {
         List<StudentInfo> data = studentMapper.selectAllByPage(param.getData());
         int count = studentMapper.selectAll().size();
         Page page = new Page();
@@ -33,28 +33,28 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Response add(Student record) {
+    public Response add(Student record) throws Exception {
         if (studentMapper.insert(record) > 0)
             return new Response(new Date().toString(), 1, "添加成功", null);
         return new Response(new Date().toString(), 0, "添加失败", null);
     }
 
     @Override
-    public Response delete(String tno) {
+    public Response delete(String tno) throws Exception {
         if (studentMapper.deleteByPrimaryKey(tno) > 0)
             return new Response(new Date().toString(), 1, "删除成功", null);
         return new Response(new Date().toString(), 0, "删除失败", null);
     }
 
     @Override
-    public Response update(Student record) {
+    public Response update(Student record) throws Exception {
         if (studentMapper.updateByPrimaryKeySelective(record) > 0)
             return new Response(new Date().toString(), 1, "更新成功", null);
         return new Response(new Date().toString(), 0, "更新失败", null);
     }
 
     @Override
-    public Page search(String keyword, PageParam param) {
+    public Page search(String keyword, PageParam param) throws Exception {
         param.put("keyword", "%"+keyword+"%");
 
         List<StudentInfo> data = studentMapper.searchByPage(param.getData());
@@ -65,12 +65,12 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public int getCount() {
+    public int getCount() throws Exception {
         return studentMapper.selectAll().size();
     }
 
     @Override
-    public Page selectByGrade(String grade, PageParam param) {
+    public Page selectByGrade(String grade, PageParam param) throws Exception {
         param.put("grade", grade);
         List<StudentInfo> data = studentMapper.selectByGrade(param.getData());
         int count = studentMapper.selectAllByGrade(grade).size();
@@ -80,7 +80,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Page selectByClazz(Integer clazz, PageParam param) {
+    public Page selectByClazz(Integer clazz, PageParam param) throws Exception {
         param.put("clazz", clazz);
         List<StudentInfo> data = studentMapper.selectByClazz(param.getData());
         int count = studentMapper.selectAllByClazz(clazz).size();

@@ -39,21 +39,21 @@ public class MiniController {
     private StatusService statusService;
 
     @GetMapping(value = "/login", params = {"code"})
-    public Response login(String code) {
+    public Response login(String code) throws Exception {
         String response = WechatUtil.getOpenid(code);
         String openid =  JsonCode.getValue(response, "$.openid");
         return new Response(new Date().toString(), 1, "", openid);
     }
 
     @GetMapping(value = "/access", params = {"openid"})
-    public Response access(String openid) {
+    public Response access(String openid) throws Exception {
         if (teacherService.selectByOpenid(openid) != null)
             return new Response(new Date().toString(), 1, "", true);
         return new Response(new Date().toString(), 0, "", false);
     }
 
     @GetMapping(value = "/register", params = {"tno", "name", "openid"})
-    public Response register(Teacher teacher) {
+    public Response register(Teacher teacher) throws Exception {
         Teacher t = teacherService.selectByTno(teacher.getTno());
 
         if (t != null) {
@@ -66,26 +66,26 @@ public class MiniController {
     }
 
     @GetMapping(value = "/search", params = {"page", "limit", "keyword", "openid"})
-    public Object search(int page, int limit, String keyword, String openid){
+    public Object search(int page, int limit, String keyword, String openid) throws Exception {
         if (!(boolean)access(openid).getContent())
             return new Response(new Date().toString(), 0, "没有权限", null);
         return studentService.search(keyword, new PageParam(page, limit));
     }
 
     @GetMapping("/getGrade")
-    public Response getGrade() {
+    public Response getGrade() throws Exception {
         return clazzService.getGrade();
     }
 
     @GetMapping(value = "/getInfoByGrade", params = {"page", "limit", "grade", "openid"})
-    public Object getInfoByGrade(int page, int limit, String grade, String openid) {
+    public Object getInfoByGrade(int page, int limit, String grade, String openid) throws Exception {
         if (!(boolean)access(openid).getContent())
             return new Response(new Date().toString(), 0, "没有权限", null);
         return studentService.selectByGrade(grade, new PageParam(page, limit));
     }
 
     @PostMapping(value = "/updateRemark", params = {"sno", "remark", "openid"})
-    public Response updateRemark(String sno, String remark, String openid){
+    public Response updateRemark(String sno, String remark, String openid) throws Exception {
         if (!(boolean)access(openid).getContent())
             return new Response(new Date().toString(), 0, "没有权限", null);
         Student student = new Student();
@@ -95,7 +95,7 @@ public class MiniController {
     }
 
     @GetMapping(value = "/getMyClassInfo", params = {"page", "limit", "openid"})
-    public Object getMyClassInfo(int page, int limit, String openid) {
+    public Object getMyClassInfo(int page, int limit, String openid) throws Exception {
         if (!(boolean)access(openid).getContent())
             return new Response(new Date().toString(), 0, "没有权限", null);
 
@@ -110,7 +110,7 @@ public class MiniController {
     }
 
     @GetMapping("/getStatus")
-    public Response getStatus() {
+    public Response getStatus() throws Exception {
         return statusService.getStatus();
     }
 

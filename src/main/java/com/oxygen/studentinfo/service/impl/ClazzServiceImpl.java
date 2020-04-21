@@ -22,28 +22,28 @@ public class ClazzServiceImpl implements ClazzService {
     private ClazzMapper clazzMapper;
 
     @Override
-    public Response add(Clazz record) {
+    public Response add(Clazz record) throws Exception {
         if (clazzMapper.insert(record) > 0)
             return new Response(new Date().toString(), 1, "添加成功", null);
         return new Response(new Date().toString(), 1, "添加失败", null);
     }
 
     @Override
-    public Response delete(int id) {
+    public Response delete(int id) throws Exception {
         if (clazzMapper.deleteByPrimaryKey(id) > 0)
             return new Response(new Date().toString(), 1, "删除成功", null);
         return new Response(new Date().toString(), 1, "删除失败", null);
     }
 
     @Override
-    public Response update(Clazz record) {
+    public Response update(Clazz record) throws Exception {
         if (clazzMapper.updateByPrimaryKeySelective(record) > 0)
             return new Response(new Date().toString(), 1, "更新成功", null);
         return new Response(new Date().toString(), 1, "更新失败", null);
     }
 
     @Override
-    public Page selectAll(PageParam param) {
+    public Page selectAll(PageParam param) throws Exception {
         List<Clazz> data = clazzMapper.selectAllByPage(param.getData());
         int count = clazzMapper.selectAll().size();
 
@@ -52,7 +52,7 @@ public class ClazzServiceImpl implements ClazzService {
     }
 
     @Override
-    public Page search(String keyword, PageParam param) {
+    public Page search(String keyword, PageParam param) throws Exception {
         param.put("keyword", "%" + keyword + "%");
         int count = clazzMapper.search("%" + keyword + "%").size();
         List<Clazz> data = clazzMapper.searchByPage(param.getData());
@@ -62,17 +62,17 @@ public class ClazzServiceImpl implements ClazzService {
     }
 
     @Override
-    public int getCount() {
+    public int getCount() throws Exception {
         return clazzMapper.selectAll().size();
     }
 
     @Override
-    public Clazz selectByName(String name) {
+    public Clazz selectByName(String name) throws Exception {
         return clazzMapper.selectByName(name);
     }
 
     @Override
-    public Response getGrade() {
+    public Response getGrade() throws Exception {
         List<Clazz> data = clazzMapper.getGrade();
         List<String> grade = new ArrayList<>();
         for (Clazz c : data) {

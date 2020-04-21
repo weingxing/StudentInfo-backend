@@ -16,28 +16,28 @@ public interface CollegeService {
      * @param record
      * @return
      */
-    public Response add(College record);
+    public Response add(College record) throws Exception;
 
     /**
      * 删除学院（按id）
      * @param id
      * @return
      */
-    public Response delete(int id);
+    public Response delete(int id) throws Exception;
 
     /**
      * 更新学院信息（根据id）
      * @param record
      * @return
      */
-    public Response update(College record);
+    public Response update(College record) throws Exception;
 
     /**
      * 查询所有班级，分页返回数据
      * @param param
      * @return
      */
-    public Page selectAll(PageParam param);
+    public Page selectAll(PageParam param) throws Exception;
 
     /**
      * 搜索班级，分页返回数据
@@ -45,12 +45,12 @@ public interface CollegeService {
      * @param param
      * @return
      */
-    public Page search(String keyword, PageParam param);
+    public Page search(String keyword, PageParam param) throws Exception;
 
     /**
      * 根据班级名称查询班级
      * @param name
      * @return
      */
-    public College selectByName(String name);
+    public College selectByName(String name) throws Exception;
 }

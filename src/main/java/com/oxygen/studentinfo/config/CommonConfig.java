@@ -1,10 +1,21 @@
 package com.oxygen.studentinfo.config;
 
-/**
- * RSA加密私钥
- */
-public class RSAKey {
-    public static final String privateKey = "MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCKxKVFK7v55yAt2lhTtvm5E3z/\n" +
+public class CommonConfig {
+    // 图片地址
+    public static final String domain = "图床地址";
+
+    //文件上传路径
+    public static final String path = "/root/upload";
+
+    // 微信小程序appid
+    public static final String APP_ID = "XXXXXXXXXX";
+
+    // 微信小程序密钥
+    public static final String SECRET = "XXXXXXXXXX";
+
+    // RSA加密私钥
+    public static final String privateKey =
+			"MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCKxKVFK7v55yAt2lhTtvm5E3z/\n" +
             "qSlaPBFNNyfPqWnKHqUTvT2xTXoLLDYrlga/mjIvdxjX3SdbB1qg6HFSWg2lvorXU052Hp89Zo3F\n" +
             "LsHferBy21ak1R3l//fa/ad2wlcBUk5Wk1gmurTgRfrWGZp4aMiaj7SkZXEEAynZ8sVxVpa+ejwj\n" +
             "fV/IzFK8yR3+qKwvLVfPCEpRJxS5UnulaoMRoih5/o4d0lNfo0AHSUhodFj7WKU9avptN/T7V61m\n" +

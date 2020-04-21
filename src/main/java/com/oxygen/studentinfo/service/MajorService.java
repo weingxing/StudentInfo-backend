@@ -16,28 +16,28 @@ public interface MajorService {
      * @param record
      * @return
      */
-    public Response add(Major record);
+    public Response add(Major record) throws Exception;
 
     /**
      * 删除专业（根据id）
      * @param id
      * @return
      */
-    public Response delete(int id);
+    public Response delete(int id) throws Exception;
 
     /**
      * 更新专业信息(根据id）
      * @param record
      * @return
      */
-    public Response update(Major record);
+    public Response update(Major record) throws Exception;
 
     /**
      * 查询所有专业，分页返回数据
      * @param param
      * @return
      */
-    public Page selectAll(PageParam param);
+    public Page selectAll(PageParam param) throws Exception;
 
     /**
      * 根据关键词查询专业，分页返回数据
@@ -45,18 +45,18 @@ public interface MajorService {
      * @param param
      * @return
      */
-    public Page search(String keyword, PageParam param);
+    public Page search(String keyword, PageParam param) throws Exception;
 
     /**
      * 取得当前数据中专业的总数
      * @return
      */
-    public int getCount();
+    public int getCount() throws Exception;
 
     /**
      * 根据专业名称查询专业信息
      * @param name
      * @return
      */
-    public Major selectByName(String name);
+    public Major selectByName(String name) throws Exception;
 }

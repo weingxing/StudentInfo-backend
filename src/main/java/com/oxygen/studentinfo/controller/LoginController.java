@@ -33,18 +33,18 @@ public class LoginController {
     private StatusService statusService;
 
     @GetMapping("/home")
-    public String home() {
+    public String home() throws Exception {
         return "index";
     }
 
     @GetMapping("/login")
-    public String login() {
+    public String login() throws Exception {
         return "login";
     }
 
     @PostMapping(value = "/login", params = {"status"})
     @ResponseBody
-    public Response loginResult(String status) {
+    public Response loginResult(String status) throws Exception {
         try {
             if (status.equals("successful")) {
                 return new Response(new Date().toString(), 1, "登录成功",
@@ -59,7 +59,7 @@ public class LoginController {
 
     @GetMapping("/welcome")
     @ResponseBody
-    public Response welcome() {
+    public Response welcome() throws Exception {
         return new Response(new Date().toString(), 1,
                 "", new Welcome(studentService.getCount(), teacherService.getCount(),
                 clazzService.getCount(), majorService.getCount(), statusService.getStatusCode()));
@@ -67,7 +67,7 @@ public class LoginController {
 
     @GetMapping(value = "/updateStatus", params = {"status"})
     @ResponseBody
-    public Response update(boolean status) {
+    public Response update(boolean status) throws Exception {
         Status record = new Status();
         record.setId(1);
         if(status)

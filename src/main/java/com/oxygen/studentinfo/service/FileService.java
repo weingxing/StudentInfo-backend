@@ -16,12 +16,12 @@ public interface FileService {
      * @param file
      * @return
      */
-    public Response upload(MultipartFile file);
+    public Response upload(MultipartFile file) throws Exception;
 
     /**
      * 下载文件
      * @param request
      * @return
      */
-    public  Response download(HttpServletRequest request);
+    public  Response download(HttpServletRequest request) throws Exception;
 }

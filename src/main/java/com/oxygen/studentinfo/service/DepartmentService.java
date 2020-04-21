@@ -16,28 +16,28 @@ public interface DepartmentService {
      * @param record
      * @return
      */
-    public Response add(Department record);
+    public Response add(Department record) throws Exception;
 
     /**
      * 删除系别（根据id）
      * @param id
      * @return
      */
-    public Response delete(int id);
+    public Response delete(int id) throws Exception;
 
     /**
      * 更新类别（根据id）
      * @param record
      * @return
      */
-    public Response update(Department record);
+    public Response update(Department record) throws Exception;
 
     /**
      * 查询所有类别，分页返回数据
      * @param param
      * @return
      */
-    public Page selectAll(PageParam param);
+    public Page selectAll(PageParam param) throws Exception;
 
     /**
      * 根据关键词搜索系别，分页返回数据
@@ -45,12 +45,12 @@ public interface DepartmentService {
      * @param param
      * @return
      */
-    public Page search(String keyword, PageParam param);
+    public Page search(String keyword, PageParam param) throws Exception;
 
     /**
      * 根据名称选择系别
      * @param name
      * @return
      */
-    public Department selectByName(String name);
+    public Department selectByName(String name) throws Exception;
 }

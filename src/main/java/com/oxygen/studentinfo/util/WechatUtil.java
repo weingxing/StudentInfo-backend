@@ -1,6 +1,6 @@
 package com.oxygen.studentinfo.util;
 
-import com.oxygen.studentinfo.config.WechatSK;
+import com.oxygen.studentinfo.config.CommonConfig;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -60,8 +60,8 @@ public class WechatUtil {
      */
     public static String getOpenid(String code) {
 
-        String url = "https://api.weixin.qq.com/sns/jscode2session?appid=" + WechatSK.APP_ID +
-                "&secret=" + WechatSK.SECRET + "&js_code=" + code + "&grant_type=authorization_code";
+        String url = "https://api.weixin.qq.com/sns/jscode2session?appid=" + CommonConfig.APP_ID +
+                "&secret=" + CommonConfig.SECRET + "&js_code=" + code + "&grant_type=authorization_code";
         return sendGet(url);
     }
 

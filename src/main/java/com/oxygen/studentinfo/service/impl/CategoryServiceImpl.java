@@ -24,7 +24,7 @@ public class CategoryServiceImpl implements CategoryService {
     private CategoryMapper categoryMapper;
 
     @Override
-    public Response add(Category category) {
+    public Response add(Category category)  throws Exception {
         // 插入成功或失败分别返回对应的内容
         if (categoryMapper.insert(category) > 0)
             return new Response(new Date().toString(), 1, "添加成功", null);
@@ -32,21 +32,21 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Response delete(int id) {
+    public Response delete(int id)  throws Exception {
         if (categoryMapper.deleteByPrimaryKey(id) > 0)
             return new Response(new Date().toString(), 1, "删除成功", null);
         return new Response(new Date().toString(), 1, "删除失败", null);
     }
 
     @Override
-    public Response update(Category category) {
+    public Response update(Category category)  throws Exception {
         if (categoryMapper.updateByPrimaryKeySelective(category) > 0)
             return new Response(new Date().toString(), 1, "更新成功", null);
         return new Response(new Date().toString(), 1, "更新失败", null);
     }
 
     @Override
-    public Page selectAll(PageParam param) {
+    public Page selectAll(PageParam param)  throws Exception {
         // 查询数据并统计数量
         List<Category> data = categoryMapper.selectAllByPage(param.getData());
         int count = categoryMapper.selectAll().size();
@@ -57,7 +57,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Page search(String keyword, PageParam param) {
+    public Page search(String keyword, PageParam param)  throws Exception {
         // 对关键词添加通配符，实现模糊搜索
         param.put("keyword", "%" + keyword + "%");
         List<Category> data = categoryMapper.searchByPage(param.getData());
@@ -68,7 +68,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category selectByName(String name) {
+    public Category selectByName(String name)  throws Exception {
         return categoryMapper.selectByName(name);
     }
 }

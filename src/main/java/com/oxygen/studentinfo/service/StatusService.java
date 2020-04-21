@@ -16,18 +16,18 @@ public interface StatusService {
      * @param record
      * @return
      */
-    public Response update(Status record);
+    public Response update(Status record) throws Exception;
 
     /**
      * 查询状态
      * @return
      */
-    public Response getStatus();
+    public Response getStatus() throws Exception;
 
     /**
      * 查询状态码
      * @return
      */
-    public int getStatusCode();
+    public int getStatusCode() throws Exception;
 
 }

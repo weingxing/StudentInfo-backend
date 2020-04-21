@@ -15,27 +15,27 @@ public class MajorController {
     private MajorService majorService;
 
     @GetMapping(value = "/getAll", params = {"page", "limit"})
-    public Page getAll(int page, int limit) {
+    public Page getAll(int page, int limit) throws Exception {
         return majorService.selectAll(new PageParam(page, limit));
     }
 
     @PostMapping(value = "/add", params = {"name"})
-    public Response add(Major major) {
+    public Response add(Major major) throws Exception {
         return majorService.add(major);
     }
 
     @DeleteMapping(value = "/delete", params = {"id"})
-    public Response delete(int id) {
+    public Response delete(int id) throws Exception {
         return majorService.delete(id);
     }
 
     @PutMapping(value = "/update", params = {"id", "name"})
-    public Response update(Major major) {
+    public Response update(Major major) throws Exception {
         return majorService.update(major);
     }
 
     @GetMapping(value = "/search", params = {"page", "limit", "keyword"})
-    public Page search(int page, int limit, String keyword) {
+    public Page search(int page, int limit, String keyword) throws Exception {
         return majorService.search(keyword, new PageParam(page, limit));
     }
 }

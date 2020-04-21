@@ -23,7 +23,7 @@ public class MyPasswordEncoder implements PasswordEncoder {
     @Override
     public boolean matches(CharSequence charSequence, String s) {
         // RSA加密私钥
-        String privateKey = RSAKey.privateKey;
+        String privateKey = CommonConfig.privateKey;
         // 对前端传来的通过RSA加密的密码解密
         charSequence = RSAUtil.decrypt(privateKey, charSequence.toString());
         // 返回匹配结果

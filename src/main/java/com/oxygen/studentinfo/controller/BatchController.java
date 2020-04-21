@@ -1,6 +1,6 @@
 package com.oxygen.studentinfo.controller;
 
-import com.oxygen.studentinfo.config.PhotoAddress;
+import com.oxygen.studentinfo.config.CommonConfig;
 import com.oxygen.studentinfo.dto.Response;
 import com.oxygen.studentinfo.entity.*;
 import com.oxygen.studentinfo.service.*;
@@ -25,7 +25,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/page/api")
 public class BatchController {
-    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
     private FileService fileService;
@@ -43,7 +42,7 @@ public class BatchController {
     private DepartmentService departmentService;
 
     @RequestMapping(value = "/batchAdd")
-    public Response batchAdd(@RequestParam("file")MultipartFile file){
+    public Response batchAdd(@RequestParam("file")MultipartFile file) throws Exception {
         // 保存文件并取得文件路径
         String path = (String)fileService.upload(file).getContent();
         // 读取Excel数据
@@ -114,7 +113,7 @@ public class BatchController {
             student.setIdcard(list.get(11));
             student.setAddress(list.get(12));
             student.setRemark(list.get(13));
-            student.setPhoto(PhotoAddress.domain + student.getSno() + ".jpg");
+            student.setPhoto(CommonConfig.domain + student.getSno() + ".jpg");
 
             studentService.add(student);
         }

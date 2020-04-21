@@ -19,7 +19,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping(value = "/changePassword", params = {"uid", "oldPassword", "password"})
-    public Response changePassword(PasswordChanger passwordChanger) {
+    public Response changePassword(PasswordChanger passwordChanger) throws Exception {
         return userService.changePassword(passwordChanger);
     }
 }
